@@ -1,8 +1,14 @@
+import Navbar from './components/Navbar';
+import Carousel from './projects/01Carousel';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   return (
-    <>
-      <h1>Interesting React Projects</h1>
-    </>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<Carousel />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

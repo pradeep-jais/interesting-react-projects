@@ -1,0 +1,21 @@
+nav {
+  height: 5rem;
+  text-align: center;
+  padding-top: 0.7rem;
+  color: var(--gray-100);
+  background: var(--primary-900);
+  position: relative;
+}
+@media  screen and (max-width:512px) {
+  nav h2{
+  font-size: 2rem;
+  padding: 0.7rem 1rem;
+}
+}
+.author {
+  position: absolute;
+  right: 0.4rem;
+  top: 3.2rem;
+  /* letter-spacing: 1px; */
+}
+@
