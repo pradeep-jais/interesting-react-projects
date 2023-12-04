@@ -1,0 +1,38 @@
+.section-center {
+  text-align: center;
+  padding-top: 4rem;
+}
+
+.likeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  width: 8.5rem;
+  font-weight: bold;
+  padding: 0.25rem 1rem;
+  border-radius: 2rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  color: grey;
+  background: white;
+  border: 2px solid grey;
+  transition: 0.1s linear all;
+  cursor: pointer;
+}
+
+.likeBtn:hover {
+  color: orangered;
+  border-color: red;
+}
+.liked,
+.liked:hover {
+  background-color: orangered;
+  color: white;
+  border-color: orangered;
+}
+.error {
+  margin-top: 1rem;
+  background: var(--red-light);
+}
