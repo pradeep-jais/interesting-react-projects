@@ -43,6 +43,7 @@ const LikeButton = () => {
   return (
     <section className="section-center like-button-project">
       <button
+        disabled={isFetching}
         className={`likeBtn ${liked ? 'liked' : ''}`}
         onClick={handleLikeUnlike}
       >
