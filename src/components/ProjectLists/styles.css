@@ -1,0 +1,29 @@
+.project-menu {
+  min-height: 10rem;
+  background: var(--primary-900);
+}
+.pj-menu-title {
+  padding: 1rem 1rem 0;
+  color: #fff;
+  text-decoration: underline;
+}
+.pj-menu-title i {
+  margin-left: 0.5rem;
+}
+.projects-list {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  margin: 0 1rem;
+}
+.project-link {
+  display: inline-block;
+  color: var(--gray-300);
+  padding: 0 1rem;
+  border-radius: 0.1rem;
+  transition: var(--transition);
+}
+.project-link:hover {
+  background: var(--primary-800);
+  color: var(--white);
+}

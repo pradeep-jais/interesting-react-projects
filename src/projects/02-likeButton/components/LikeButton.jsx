@@ -41,7 +41,7 @@ const LikeButton = () => {
   };
 
   return (
-    <section className="section-center">
+    <section className="section-center like-button-project">
       <button
         className={`likeBtn ${liked ? 'liked' : ''}`}
         onClick={handleLikeUnlike}

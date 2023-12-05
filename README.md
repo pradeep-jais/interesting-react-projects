@@ -25,6 +25,11 @@ This React app is a collection of various small react projects for the purpose o
 - HTTP Method: 'POST'
   Content Type:'json'
 - request body- 'action':like or unlike
+- const response = await fetch(url, {
+  method: 'POST',
+  headers: { 'Content-type': 'application/json' },
+  body: JSON.stringify({ action: liked ? 'unlike' : 'like' }),
+  });
 - #### Response : 50% chance of success or failure
 - Success:'{message:'some'}'
   Failure:'{message:';some msg'}'
