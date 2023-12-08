@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-const ViewProject = () => {
+const ProjectMenu = () => {
   return (
     <footer className="project-menu">
       <div className="section-center">
@@ -19,9 +19,14 @@ const ViewProject = () => {
               like button feature
             </Link>
           </li>
+          <li>
+            <Link className="project-link" to="/pagination">
+              pagination
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>
   );
 };
-export default ViewProject;
+export default ProjectMenu;

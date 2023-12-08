@@ -1,1 +1,1 @@
-export { default } from './ViewProject';
+export { default } from './ProjectMenu';
