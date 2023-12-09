@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LikeButton from './projects/02-likeButton';
 import Pagination from './projects/03-pagination';
 import Error from './components/Error';
+import ProgressBar from './projects/04-progressBar';
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/carousel" element={<Carousel />} />
           <Route path="/likeButton" element={<LikeButton />} />
           <Route path="/pagination" element={<Pagination />} />
+          <Route path="/progressBar" element={<ProgressBar />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
         <ViewProject />
