@@ -24,6 +24,11 @@ const ProjectMenu = () => {
               pagination
             </Link>
           </li>
+          <li>
+            <Link className="project-link" to="/progressBar">
+              progress bar
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

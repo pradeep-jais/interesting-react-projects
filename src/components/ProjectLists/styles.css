@@ -13,8 +13,13 @@
 .projects-list {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   text-transform: capitalize;
   margin: 0 1rem;
+  gap: 5px;
+}
+.projects-list li {
+  flex: 1 1 13rem;
 }
 .project-link {
   display: inline-block;
@@ -24,6 +29,5 @@
   transition: var(--transition);
 }
 .project-link:hover {
-  background: var(--primary-800);
   color: var(--white);
 }
