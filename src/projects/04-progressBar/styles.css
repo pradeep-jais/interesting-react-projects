@@ -1,0 +1,27 @@
+.progress-bar-center {
+  text-align: center;
+}
+.bars {
+  width: 30rem;
+  height: 2rem;
+  margin: 0 auto;
+  background: rgb(220, 223, 220);
+  border-radius: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+.bars div {
+  position: absolute;
+  background: rgb(96, 187, 93);
+  inset: 0;
+  right: 50%;
+  z-index: 5;
+  border-radius: 1rem;
+}
+.bars span {
+  font-size: 1.25rem;
+  position: relative;
+  z-index: 10;
+}
