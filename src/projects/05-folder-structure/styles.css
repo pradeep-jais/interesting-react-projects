@@ -1,0 +1,16 @@
+.folders {
+  padding: 1rem;
+}
+.folder {
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.sub-folders {
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.25rem;
+}
+.folder:hover {
+  background: gainsboro;
+}
