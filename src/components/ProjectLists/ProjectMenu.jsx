@@ -29,6 +29,11 @@ const ProjectMenu = () => {
               progress bar
             </Link>
           </li>
+          <li>
+            <Link className="project-link" to="/folders">
+              folder structure
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

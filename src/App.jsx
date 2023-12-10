@@ -6,6 +6,7 @@ import LikeButton from './projects/02-likeButton';
 import Pagination from './projects/03-pagination';
 import Error from './components/Error';
 import ProgressBar from './projects/04-progressBar';
+import FolderStructure from './projects/05-folder-structure';
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/likeButton" element={<LikeButton />} />
           <Route path="/pagination" element={<Pagination />} />
           <Route path="/progressBar" element={<ProgressBar />} />
+          <Route path="/folders" element={<FolderStructure />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
         <ViewProject />
