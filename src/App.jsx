@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <main>
+      <main className="main">
         <Routes>
           <Route exact path="/" element={<Carousel />} />
           <Route exact path="/carousel" element={<Carousel />} />
@@ -21,8 +21,8 @@ function App() {
           <Route path="/folders" element={<FolderStructure />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
-        <ViewProject />
       </main>
+      <ViewProject />
     </BrowserRouter>
   );
 }

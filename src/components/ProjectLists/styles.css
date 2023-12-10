@@ -1,5 +1,6 @@
 .project-menu {
   min-height: 10rem;
+  padding-bottom: 5rem;
   background: var(--primary-900);
 }
 .pj-menu-title {
@@ -30,4 +31,10 @@
 }
 .project-link:hover {
   color: var(--white);
+}
+.copyright {
+  color: #d7d7d7;
+  text-transform: capitalize;
+  text-align: center;
+  margin-top: 2rem;
 }

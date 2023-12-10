@@ -259,3 +259,11 @@ alerts
   margin: 0 auto;
   max-width: var(--max-width);
 }
+/* 
+#############
+Main 
+#############
+ */
+.main {
+  min-height: 70vh;
+}

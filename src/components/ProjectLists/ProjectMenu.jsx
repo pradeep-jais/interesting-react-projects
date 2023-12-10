@@ -35,6 +35,10 @@ const ProjectMenu = () => {
             </Link>
           </li>
         </ul>
+        <p className="copyright">
+          All rights reserve &copy;{new Date().getFullYear()} pradeep's react
+          project collections
+        </p>
       </div>
     </footer>
   );
