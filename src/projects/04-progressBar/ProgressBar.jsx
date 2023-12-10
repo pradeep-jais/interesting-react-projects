@@ -30,7 +30,7 @@ const ProgressBar = () => {
             setSuccess(true);
           }}
         />
-        {success ? <p>Success!</p> : <p>Loading...</p>}
+        {success ? <span>Success!</span> : <span>Loading...</span>}
         <Bars count={75} />
       </div>
     </section>

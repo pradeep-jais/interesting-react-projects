@@ -33,8 +33,15 @@
   color: var(--white);
 }
 .copyright {
+  max-width: 100%;
   color: #d7d7d7;
   text-transform: capitalize;
   text-align: center;
   margin-top: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .copyright {
+    margin-top: 3rem;
+    font-size: larger;
+  }
 }
