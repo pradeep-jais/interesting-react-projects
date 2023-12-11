@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { characterData } from '../data/characterData';
 import '../styles.css';
 import usePasswordGenerator from '../hooks/usePasswordGenerator';
+import StrengthChecker from './StrengthChecker';
 
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState(8);
@@ -88,10 +89,10 @@ const PasswordGenerator = () => {
           {error ? (
             <p className="error-msg">Select at least one checkbox</p>
           ) : (
-            <div className="strength">
-              <span>strength:</span>
-              <span>good</span>
-            </div>
+            <StrengthChecker
+              length={passwordLength}
+              checkboxData={checkboxData}
+            />
           )}
 
           {/* generate button */}
