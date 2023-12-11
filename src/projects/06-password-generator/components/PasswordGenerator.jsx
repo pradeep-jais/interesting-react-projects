@@ -6,6 +6,8 @@ import usePasswordGenerator from '../hooks/usePasswordGenerator';
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState(8);
   const [checkboxData, setCheckboxData] = useState(characterData);
+  const [copied, setCopied] = useState(false);
+
   // custom hook
   const { error, password, generatePassword } = usePasswordGenerator();
   // console.log(error, password);
@@ -19,6 +21,14 @@ const PasswordGenerator = () => {
     const checkboxData = [...characterData];
     checkboxData[index].state = !checkboxData[index].state;
     setCheckboxData(checkboxData);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(password);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
   };
 
   return (
@@ -35,7 +45,9 @@ const PasswordGenerator = () => {
           {password && (
             <header className="password">
               <p className="pwd">{password}</p>
-              <button className="btn copyBtn">copy</button>
+              <button className="btn copyBtn" onClick={handleCopy}>
+                {copied ? 'copied' : 'copy'}
+              </button>
             </header>
           )}
 
