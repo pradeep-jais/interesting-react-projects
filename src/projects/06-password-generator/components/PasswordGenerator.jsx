@@ -3,6 +3,8 @@ import { characterData } from '../data/characterData';
 import '../styles.css';
 import usePasswordGenerator from '../hooks/usePasswordGenerator';
 import StrengthChecker from './StrengthChecker';
+import Button from './Button';
+import Checkbox from './Checkbox';
 
 const PasswordGenerator = () => {
   const [passwordLength, setPasswordLength] = useState(8);
@@ -11,8 +13,8 @@ const PasswordGenerator = () => {
 
   // custom hook
   const { error, password, generatePassword } = usePasswordGenerator();
-  // console.log(error, password);
 
+  // inputs handle functions
   const handleLength = (e) => {
     const length = e.target.value;
     setPasswordLength(length);
@@ -46,9 +48,11 @@ const PasswordGenerator = () => {
           {password && (
             <header className="password">
               <p className="pwd">{password}</p>
-              <button className="btn copyBtn" onClick={handleCopy}>
-                {copied ? 'copied' : 'copy'}
-              </button>
+              <Button
+                text={copied ? 'copied' : 'copy'}
+                onClick={handleCopy}
+                customClass={'btn copyBtn'}
+              />
             </header>
           )}
 
@@ -70,18 +74,14 @@ const PasswordGenerator = () => {
           <div className="checkboxes">
             {checkboxData.map((checkbox, index) => {
               return (
-                <div key={index} className="checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={checkbox.state}
-                      onChange={() => {
-                        handleCheckboxData(index);
-                      }}
-                    />
-                    {checkbox.title}
-                  </label>
-                </div>
+                <Checkbox
+                  key={index}
+                  state={checkbox.state}
+                  onChange={() => {
+                    handleCheckboxData(index);
+                  }}
+                  title={checkbox.title}
+                />
               );
             })}
           </div>
@@ -89,21 +89,17 @@ const PasswordGenerator = () => {
           {error ? (
             <p className="error-msg">Select at least one checkbox</p>
           ) : (
-            <StrengthChecker
-              length={passwordLength}
-              checkboxData={checkboxData}
-            />
+            <StrengthChecker password={password} checkboxData={checkboxData} />
           )}
 
           {/* generate button */}
-          <button
-            className="btn generateBtn"
+          <Button
+            text={'generate password'}
             onClick={() => {
               generatePassword(passwordLength, checkboxData);
             }}
-          >
-            generate password
-          </button>
+            customClass={'btn generateBtn'}
+          />
         </div>
       </div>
     </section>

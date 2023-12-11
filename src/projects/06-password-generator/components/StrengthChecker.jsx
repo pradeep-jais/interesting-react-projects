@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const StrengthChecker = ({ length, checkboxData }) => {
+const StrengthChecker = ({ password, checkboxData }) => {
   const [strength, setStrength] = useState('');
 
   useEffect(() => {
+    const length = password.length;
     const charTypeCount = checkboxData.reduce((acc, curr) => {
       if (curr.state) {
         acc++;
@@ -28,7 +29,7 @@ const StrengthChecker = ({ length, checkboxData }) => {
     } else {
       setStrength('');
     }
-  }, [length, checkboxData]);
+  }, [password]);
   return (
     <div className="strength">
       <span>strength:</span>
