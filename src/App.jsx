@@ -7,6 +7,7 @@ import Pagination from './projects/03-pagination';
 import Error from './components/Error';
 import ProgressBar from './projects/04-progressBar';
 import FolderStructure from './projects/05-folder-structure';
+import PasswordGenerator from './projects/06-password-generator';
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/pagination" element={<Pagination />} />
           <Route path="/progressBar" element={<ProgressBar />} />
           <Route path="/folders" element={<FolderStructure />} />
+          <Route path="/pwGenerator" element={<PasswordGenerator />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>

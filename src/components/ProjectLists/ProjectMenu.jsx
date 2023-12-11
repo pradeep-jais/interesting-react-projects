@@ -34,6 +34,11 @@ const ProjectMenu = () => {
               folder structure
             </Link>
           </li>
+          <li>
+            <Link className="project-link" to="/pwGenerator">
+              Password generator
+            </Link>
+          </li>
         </ul>
         <p className="copyright">
           All rights reserve &copy;{new Date().getFullYear()} pradeep's react
