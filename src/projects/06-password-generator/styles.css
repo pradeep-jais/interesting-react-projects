@@ -1,4 +1,64 @@
+.pwd-app-title {
+  margin-bottom: 3rem;
+}
 .container {
+  max-width: 35rem;
+  margin: 0 auto;
   background: #000014;
-  max-width: var(--max-width);
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 2rem 1.5rem;
+}
+.password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.password p {
+  margin: 0;
+}
+.length {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+.length span {
+  display: flex;
+  justify-content: space-between;
+  max-width: 29rem;
+  margin-bottom: 0.5rem;
+}
+.length label {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+.checkboxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.checkbox label {
+  text-transform: capitalize;
+  cursor: pointer;
+  display: flex;
+}
+.checkbox input {
+  margin-right: 0.5rem;
+}
+.strength {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+  text-transform: capitalize;
+  font-size: 1.25rem;
+}
+.error-msg {
+  color: red;
+}
+.generateBtn {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.25rem;
 }
