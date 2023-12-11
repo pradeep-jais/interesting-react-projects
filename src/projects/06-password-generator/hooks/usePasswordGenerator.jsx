@@ -33,6 +33,7 @@ const usePasswordGenerator = () => {
     // password algorithm
     if (!charset) {
       setError(true);
+      setPassword('');
       return;
     }
 

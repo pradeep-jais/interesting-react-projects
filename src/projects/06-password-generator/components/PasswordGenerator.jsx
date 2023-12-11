@@ -4,7 +4,7 @@ import '../styles.css';
 import usePasswordGenerator from '../hooks/usePasswordGenerator';
 
 const PasswordGenerator = () => {
-  const [passwordLength, setPasswordLength] = useState(4);
+  const [passwordLength, setPasswordLength] = useState(8);
   const [checkboxData, setCheckboxData] = useState(characterData);
   // custom hook
   const { error, password, generatePassword } = usePasswordGenerator();
@@ -32,7 +32,7 @@ const PasswordGenerator = () => {
 
         <div className="container">
           {/* password */}
-          {error || (
+          {password && (
             <header className="password">
               <p className="pwd">{password}</p>
               <button className="btn copyBtn">copy</button>
