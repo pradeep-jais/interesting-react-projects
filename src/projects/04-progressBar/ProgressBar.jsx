@@ -5,18 +5,29 @@ const ProgressBar = () => {
   const [count, setCount] = useState(0);
   const [success, setSuccess] = useState(false);
 
+  const [stopCount, setStopCount] = useState(false);
+
   useEffect(() => {
-    const id = setInterval(() => {
-      setCount((val) => {
-        return val + 1;
-      });
-    }, 100);
+    if (count === 100) {
+      setStopCount(true);
+    }
+  }, [count]);
+
+  useEffect(() => {
+    let id;
+    if (count < 100) {
+      id = setInterval(() => {
+        setCount((val) => {
+          // console.log(val, 'interval');
+          return val + 1;
+        });
+      }, 100);
+    }
     return () => {
-      if (count > 100) {
-        clearInterval(id);
-      }
+      // console.log('cleanup, interval cleared');
+      clearInterval(id);
     };
-  }, []);
+  }, [stopCount]);
 
   return (
     <section className="section">
