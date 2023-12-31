@@ -89,7 +89,12 @@ const PasswordGenerator = () => {
           {error ? (
             <p className="error-msg">Select at least one checkbox</p>
           ) : (
-            <StrengthChecker password={password} checkboxData={checkboxData} />
+            password && (
+              <StrengthChecker
+                password={password}
+                checkboxData={checkboxData}
+              />
+            )
           )}
 
           {/* generate button */}
