@@ -39,6 +39,11 @@ const ProjectMenu = () => {
               Password generator
             </Link>
           </li>
+          <li>
+            <Link className="project-link" to="/gridlights">
+              grid lights
+            </Link>
+          </li>
         </ul>
         <p className="copyright">
           All rights reserve &copy;{new Date().getFullYear()} pradeep's react

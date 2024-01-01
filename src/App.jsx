@@ -8,6 +8,8 @@ import Error from './components/Error';
 import ProgressBar from './projects/04-progressBar';
 import FolderStructure from './projects/05-folder-structure';
 import PasswordGenerator from './projects/06-password-generator';
+import GridLights from './projects/07-grid-lights';
+
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +23,7 @@ function App() {
           <Route path="/progressBar" element={<ProgressBar />} />
           <Route path="/folders" element={<FolderStructure />} />
           <Route path="/pwGenerator" element={<PasswordGenerator />} />
+          <Route path="/gridlights" element={<GridLights />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>
