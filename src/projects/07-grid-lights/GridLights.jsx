@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import './styles.css';
 
+import Cell from './Cell';
+
 const cellStructure = [
-  [1, 1, 1, 1],
-  [1, 0, 1, 1],
-  [1, 1, 1, 1],
-  [1, 1, 1, 1],
+  [1, 1, 1],
+  [1, 0, 1],
+  [1, 1, 1],
 ];
 
 const GridLights = () => {
@@ -60,13 +61,15 @@ const GridLights = () => {
         >
           {cellStructure.flat().map((cell, index) => {
             return cell ? (
-              <button
+              <Cell
                 key={index}
-                className={order.includes(index) ? 'cell cell-active' : 'cell'}
-                disabled={isDeactivating}
-                aria-label={`cell ${index + 1}`}
-                onClick={() => activateCell(index)}
-              ></button>
+                filled={order.includes(index)}
+                onClick={() => {
+                  activateCell(index);
+                }}
+                isDisabled={isDeactivating}
+                label={`cell ${index + 1}`}
+              />
             ) : (
               <div key={index}></div>
             );
