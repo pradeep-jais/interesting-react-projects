@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import './styles.css';
 
-const cellStructure = [1, 1, 1, 1, 0, 1, 1, 1, 1];
+const cellStructure = [
+  [1, 1, 1, 1],
+  [1, 0, 1, 1],
+  [1, 1, 1, 1],
+  [1, 1, 1, 1],
+];
 
 const GridLights = () => {
   const [order, setOrder] = useState([]);
@@ -18,7 +23,7 @@ const GridLights = () => {
     setOrder(newOrder);
 
     // deactivating cells
-    if (newOrder.length === cellStructure.filter(Boolean).length) {
+    if (newOrder.length === cellStructure.flat().filter(Boolean).length) {
       deactivateCells();
     }
   };
@@ -39,7 +44,6 @@ const GridLights = () => {
       });
     }, 300);
   };
-  console.log(order);
 
   return (
     <section className="section grid-light">
@@ -48,8 +52,13 @@ const GridLights = () => {
           <h3>grid lights</h3>
           <div className="underline"></div>
         </div>
-        <div className="grid-container">
-          {cellStructure.map((cell, index) => {
+        <div
+          className="grid-container"
+          style={{
+            gridTemplateColumns: `repeat(${cellStructure[0].length},1fr)`,
+          }}
+        >
+          {cellStructure.flat().map((cell, index) => {
             return cell ? (
               <button
                 key={index}

@@ -1,7 +1,7 @@
 .grid-container {
   background: rgb(215, 248, 215);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(3, 1fr); */
   gap: 0.5rem;
   width: 100%;
   max-width: 300px;
