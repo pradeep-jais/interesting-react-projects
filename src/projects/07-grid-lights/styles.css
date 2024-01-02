@@ -1,0 +1,22 @@
+.grid-container {
+  background: rgb(215, 248, 215);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 0.25rem;
+  box-shadow: var(--shadow-1);
+}
+.cell {
+  border: 1px solid grey;
+  padding-bottom: 100%;
+  background: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.cell-active {
+  background-color: green;
+}
