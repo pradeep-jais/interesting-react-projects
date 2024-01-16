@@ -10,37 +10,37 @@ const ProjectMenu = () => {
         </h5>
         <ul className="projects-list">
           <li>
-            <Link className="project-link" to="/carousel">
+            <Link className="project-link" to="projects/carousel">
               carousel : image slider
             </Link>
           </li>
           <li>
-            <Link className="project-link" to="/likeButton">
+            <Link className="project-link" to="projects/likeButton">
               like button feature
             </Link>
           </li>
           <li>
-            <Link className="project-link" to="/pagination">
+            <Link className="project-link" to="projects/pagination">
               pagination
             </Link>
           </li>
           <li>
-            <Link className="project-link" to="/progressBar">
+            <Link className="project-link" to="projects/progressBar">
               progress bar
             </Link>
           </li>
           <li>
-            <Link className="project-link" to="/folders">
+            <Link className="project-link" to="projects/folders">
               folder structure
             </Link>
           </li>
           <li>
-            <Link className="project-link" to="/pwGenerator">
+            <Link className="project-link" to="projects/pwGenerator">
               Password generator
             </Link>
           </li>
           <li>
-            <Link className="project-link" to="/gridlights">
+            <Link className="project-link" to="projects/gridLights">
               grid lights
             </Link>
           </li>

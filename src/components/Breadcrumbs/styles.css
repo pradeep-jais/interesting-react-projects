@@ -1,0 +1,6 @@
+.breadcrumbs {
+  padding: 0.5rem 1rem 0;
+  text-transform: capitalize;
+  display: flex;
+  gap: 0.25rem;
+}
