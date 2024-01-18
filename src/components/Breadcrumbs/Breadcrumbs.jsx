@@ -5,7 +5,6 @@ const Breadcrumbs = () => {
   const { pathname } = useLocation();
 
   const breadcrumbs = pathname.split('/').filter((item) => item);
-  console.log(breadcrumbs);
 
   return (
     <>

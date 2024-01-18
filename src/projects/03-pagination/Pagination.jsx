@@ -14,7 +14,6 @@ const Pagination = () => {
   const itemsPerPage = 15;
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
-  console.log(error);
   useEffect(() => {
     const fetchData = async () => {
       setError({ value: false, errorMessage: null });
