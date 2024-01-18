@@ -9,14 +9,14 @@ nav {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 .nav-icon {
   position: relative;
 }
 .nav-icon i {
   color: var(--gray-100);
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 .nav-icon .hint {
   background: var(--primary-800);
@@ -34,7 +34,7 @@ nav {
   display: block;
 }
 .nav-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
   justify-self: center;
 }
@@ -44,13 +44,16 @@ nav {
   top: 3.2rem;
   /* letter-spacing: 1px; */
 }
-@media screen and (max-width: 512px) {
+@media screen and (min-width: 568px) {
+  .navbar {
+    gap: 1rem;
+  }
+  .nav-icon i {
+    font-size: 2.5rem;
+  }
   .nav-title {
     font-size: 2rem;
-    padding: 0.7rem 1rem;
   }
-}
-@media screen and (min-width: 768px) {
   .author {
     right: 3rem;
   }
