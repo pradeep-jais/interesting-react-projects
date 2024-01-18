@@ -9,9 +9,9 @@ const Breadcrumbs = () => {
   return (
     <>
       {breadcrumbs.length < 1 ? (
-        <div className="breadcrumbs"></div>
+        <div className="breadcrumbs section-center"></div>
       ) : (
-        <div className="breadcrumbs">
+        <div className="breadcrumbs section-center">
           <Link to="/">Home /</Link>
           {breadcrumbs.map((item, index) => {
             return index === breadcrumbs.length - 1 ? (
