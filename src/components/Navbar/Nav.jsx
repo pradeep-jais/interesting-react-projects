@@ -1,9 +1,17 @@
+import { Link } from 'react-router-dom';
+
 const Nav = () => {
   return (
     <nav>
       <div className="navbar section-center">
-        <h2>Interesting React Projects</h2>
-        <p className="author">&copy;PradeepJais</p>
+        <div className="nav-icon">
+          <Link to="/projects">
+            <i className="fa-brands fa-react"></i>
+          </Link>
+          <span className="hint">projects</span>
+        </div>
+        <p className="nav-title">Interesting React Projects</p>
+        <span className="author">&copy;PradeepJais</span>
       </div>
     </nav>
   );

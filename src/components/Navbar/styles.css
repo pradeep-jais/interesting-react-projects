@@ -3,12 +3,41 @@ nav {
   background: var(--primary-900);
 }
 .navbar {
+  padding: 0 1rem;
+  height: 100%;
   color: var(--gray-100);
-  text-align: center;
-  padding-top: 0.7rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-icon {
   position: relative;
 }
-
+.nav-icon i {
+  color: var(--gray-100);
+  font-size: 2.5rem;
+}
+.nav-icon .hint {
+  background: var(--primary-800);
+  color: var(--primary-100);
+  font-size: 0.65rem;
+  padding: 0 5px;
+  border-radius: 2px;
+  position: absolute;
+  top: 2.5rem;
+  left: -0.25rem;
+  display: none;
+  transition: var(--transition);
+}
+.nav-icon:hover .hint {
+  display: block;
+}
+.nav-title {
+  font-size: 2rem;
+  margin: 0;
+  justify-self: center;
+}
 .author {
   position: absolute;
   right: 0.4rem;
@@ -16,7 +45,7 @@ nav {
   /* letter-spacing: 1px; */
 }
 @media screen and (max-width: 512px) {
-  nav h2 {
+  .nav-title {
     font-size: 2rem;
     padding: 0.7rem 1rem;
   }
