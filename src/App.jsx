@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar';
-import ViewProject from './components/ProjectLists';
+import ViewProject from './components/Projects';
 import Carousel from './projects/01Carousel';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LikeButton from './projects/02-likeButton';
@@ -10,6 +10,8 @@ import FolderStructure from './projects/05-folder-structure';
 import PasswordGenerator from './projects/06-password-generator';
 import GridLights from './projects/07-grid-lights';
 import Breadcrumbs from './components/Breadcrumbs';
+import Footer from './components/Footer/';
+import Projects from './components/Projects';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Breadcrumbs />
         <Routes>
           <Route exact path="/" element={<Carousel />} />
+          <Route path="projects" element={<Projects />} />
           <Route exact path="projects/carousel" element={<Carousel />} />
           <Route path="projects/likeButton" element={<LikeButton />} />
           <Route path="projects/pagination" element={<Pagination />} />
@@ -29,7 +32,7 @@ function App() {
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>
-      <ViewProject />
+      <Footer />
     </BrowserRouter>
   );
 }

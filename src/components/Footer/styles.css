@@ -1,17 +1,16 @@
-.project-menu {
-  min-height: 10rem;
-  padding-bottom: 5rem;
+.footer {
   background: var(--primary-900);
+  padding-bottom: 3rem;
 }
-.pj-menu-title {
+.footer-heading {
   padding: 1rem 1rem 0;
   color: #fff;
   text-decoration: underline;
 }
-.pj-menu-title i {
+.footer-heading i {
   margin-left: 0.5rem;
 }
-.projects-list {
+.footer-projects-list {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -19,17 +18,17 @@
   margin: 0 1rem;
   gap: 5px;
 }
-.projects-list li {
+.footer-projects-list li {
   flex: 1 1 13rem;
 }
-.project-link {
+.footer-project-link {
   display: inline-block;
   color: var(--gray-300);
   padding: 0 1rem;
   border-radius: 0.1rem;
   transition: var(--transition);
 }
-.project-link:hover {
+.footer-project-link:hover {
   color: var(--white);
 }
 .copyright {

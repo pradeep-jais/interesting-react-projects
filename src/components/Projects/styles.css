@@ -1,0 +1,23 @@
+.project-menu {
+  min-height: 10rem;
+}
+.projects-title {
+  color: var(--gray-900);
+  margin: 1rem;
+}
+.projects-list {
+  padding: 0 0 3rem 1rem;
+}
+.project-link {
+  display: block;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  color: var(--primary-700);
+  padding: 0.5rem 1rem;
+  border-radius: 0.1rem;
+  transition: var(--transition);
+}
+.project-link:hover {
+  background: var(--primary-100);
+  color: var(--primary-900);
+}
