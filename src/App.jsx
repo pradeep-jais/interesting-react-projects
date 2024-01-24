@@ -12,6 +12,7 @@ import GridLights from './projects/07-grid-lights';
 import Breadcrumbs from './components/Breadcrumbs';
 import Footer from './components/Footer/';
 import Projects from './components/Projects';
+import LoginUI from './projects/08otpLoginUI';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="projects/folders" element={<FolderStructure />} />
           <Route path="projects/pwGenerator" element={<PasswordGenerator />} />
           <Route path="projects/gridLights" element={<GridLights />} />
+          <Route path="projects/loginUI" element={<LoginUI />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>

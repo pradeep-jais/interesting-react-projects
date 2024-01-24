@@ -6,4 +6,5 @@ export const projects = [
   { name: 'folder structure', path: 'folders' },
   { name: 'Password generator', path: 'pwGenerator' },
   { name: 'grid lights', path: 'gridLights' },
+  { name: 'Login with OTP', path: 'loginUI' },
 ];
