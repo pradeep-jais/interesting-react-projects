@@ -10,6 +10,9 @@ const LoginUI = () => {
   const handleChange = (e) => {
     const value = e.target.value;
 
+    if (isNaN(value)) {
+      return;
+    }
     setNumber(value);
   };
 
