@@ -6,12 +6,16 @@ import { useState } from 'react';
 const LoginUI = () => {
   const [otpPage, setOtpPage] = useState(false);
   const [number, setNumber] = useState('');
+  const [formAlert, setFormAlert] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value;
 
     if (isNaN(value)) {
       return;
+    }
+    if (value.length > 10) {
+      setFormAlert(false);
     }
     setNumber(value);
   };
@@ -20,7 +24,14 @@ const LoginUI = () => {
     // sending otp from backend to the number
 
     e.preventDefault();
-    setOtpPage(true);
+
+    // form validation
+    if (number.length < 10) {
+      setFormAlert(true);
+    } else {
+      setFormAlert(false);
+      setOtpPage(true);
+    }
   };
   return (
     <section className="login-ui">
@@ -41,6 +52,11 @@ const LoginUI = () => {
                   value={number}
                   onChange={handleChange}
                 />
+                {formAlert && (
+                  <span className="form-alert">
+                    *enter complete phone number
+                  </span>
+                )}
               </div>
               <button type="submit" className=" get-otp-btn btn">
                 get otp
