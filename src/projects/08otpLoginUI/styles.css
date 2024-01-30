@@ -1,0 +1,26 @@
+.get-otp-btn {
+  display: block;
+  width: 50%;
+  margin: 1rem auto;
+}
+
+/* OTP input from */
+.otp-form h5,
+.otp-form p {
+  text-align: center;
+}
+
+.otp-field {
+  width: fit-content;
+  margin: 0 auto;
+}
+.otp-input {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.otp-form .btn {
+  width: 100%;
+}
