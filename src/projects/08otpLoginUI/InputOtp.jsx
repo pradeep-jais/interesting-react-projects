@@ -7,11 +7,30 @@ const InputOtp = ({ length, number }) => {
   console.log(otp);
 
   const handleInputChange = (e, index) => {
-    console.log(index);
+    const value = e.target.value;
+    if (isNaN(value)) {
+      return;
+    }
+    const newOtp = [...otp];
+
+    if (value) {
+      newOtp[index] = value[value.length - 1];
+    } else {
+      newOtp[index] = '';
+    }
+    setOtp(newOtp);
+    // console.log(index);
+  };
+
+  const handleOtpSubmit = (e) => {
+    e.preventDefault();
+
+    // Sent otp to backend
+    console.log('OTP submitted:', otp.join(''));
   };
 
   return (
-    <form className="form otp-form">
+    <form className="form otp-form" onSubmit={handleOtpSubmit}>
       <h5>Login with phone</h5>
       <p>Enter otp sent to {number} number </p>
       <div className="otp-field">
