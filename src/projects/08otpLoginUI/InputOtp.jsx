@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styles.css';
 
 const InputOtp = ({ length, number }) => {
   const [otp, setOtp] = useState(new Array(length).fill(''));
+  const [isOtpComplete, setIsOtpComplete] = useState(false);
 
   console.log(otp);
 
@@ -29,6 +30,12 @@ const InputOtp = ({ length, number }) => {
     console.log('OTP submitted:', otp.join(''));
   };
 
+  useEffect(() => {
+    if (otp.toString().length === length) {
+      setIsOtpComplete(true);
+    }
+  }, [otp]);
+
   return (
     <form className="form otp-form" onSubmit={handleOtpSubmit}>
       <h5>Login with phone</h5>
@@ -49,7 +56,12 @@ const InputOtp = ({ length, number }) => {
           );
         })}
       </div>
-      <button type="submit" className="btn">
+      <button
+        type="submit"
+        className="btn"
+        disabled={!isOtpComplete}
+        style={{ cursor: isOtpComplete || 'not-allowed' }}
+      >
         submit
       </button>
     </form>
