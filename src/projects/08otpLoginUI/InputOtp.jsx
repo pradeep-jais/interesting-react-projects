@@ -41,6 +41,15 @@ const InputOtp = ({ length, number }) => {
       inputRefs.current[index - 1].focus();
     }
   };
+
+  const handleClick = (index) => {
+    inputRefs.current[index].setSelectionRange(1, 1);
+
+    // optional advance ux
+    if (index > 0 && otp.indexOf('') + 1) {
+      inputRefs.current[otp.indexOf('')].focus();
+    }
+  };
   useEffect(() => {
     if (otp.join('').length === length) {
       setIsOtpComplete(true);
@@ -72,6 +81,9 @@ const InputOtp = ({ length, number }) => {
               }}
               onKeyDown={(e) => {
                 handleKeyDown(e, index);
+              }}
+              onClick={() => {
+                handleClick(index);
               }}
             />
           );
