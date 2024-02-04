@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './styles.css';
 
 const InputOtp = ({ length, number }) => {
   const [otp, setOtp] = useState(new Array(length).fill(''));
   const [isOtpComplete, setIsOtpComplete] = useState(false);
 
-  console.log(otp);
+  const inputRefs = useRef([]);
+  // console.log(inputRefs);
 
   const handleInputChange = (e, index) => {
     const value = e.target.value;
@@ -13,13 +14,16 @@ const InputOtp = ({ length, number }) => {
       return;
     }
     const newOtp = [...otp];
-
     if (value) {
       newOtp[index] = value[value.length - 1];
     } else {
       newOtp[index] = '';
     }
     setOtp(newOtp);
+    // focus to next input after current value is filled
+    if (value && index < length - 1) {
+      inputRefs.current[index + 1].focus();
+    }
     // console.log(index);
   };
 
@@ -31,10 +35,15 @@ const InputOtp = ({ length, number }) => {
   };
 
   useEffect(() => {
-    if (otp.toString().length === length) {
+    if (otp.join('').length === length) {
       setIsOtpComplete(true);
     }
   }, [otp]);
+
+  // Default focus on first input field
+  useEffect(() => {
+    inputRefs.current[0].focus();
+  }, []);
 
   return (
     <form className="form otp-form" onSubmit={handleOtpSubmit}>
@@ -47,6 +56,9 @@ const InputOtp = ({ length, number }) => {
               type="text"
               key={index}
               className="form-input otp-input"
+              ref={(input) => {
+                inputRefs.current[index] = input;
+              }}
               value={value}
               onChange={(e) => {
                 handleInputChange(e, index);
