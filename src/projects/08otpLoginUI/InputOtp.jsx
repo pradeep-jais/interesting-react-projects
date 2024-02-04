@@ -14,6 +14,7 @@ const InputOtp = ({ length, number }) => {
       return;
     }
     const newOtp = [...otp];
+
     if (value) {
       newOtp[index] = value[value.length - 1];
     } else {
@@ -34,6 +35,12 @@ const InputOtp = ({ length, number }) => {
     console.log('OTP submitted:', otp.join(''));
   };
 
+  const handleKeyDown = (e, index) => {
+    // move focus to prev input on backspace
+    if (e.key === 'Backspace' && index != 0 && !otp[index]) {
+      inputRefs.current[index - 1].focus();
+    }
+  };
   useEffect(() => {
     if (otp.join('').length === length) {
       setIsOtpComplete(true);
@@ -63,7 +70,9 @@ const InputOtp = ({ length, number }) => {
               onChange={(e) => {
                 handleInputChange(e, index);
               }}
-              onKeyDown={() => {}}
+              onKeyDown={(e) => {
+                handleKeyDown(e, index);
+              }}
             />
           );
         })}
