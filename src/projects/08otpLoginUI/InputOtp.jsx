@@ -53,6 +53,8 @@ const InputOtp = ({ length, number }) => {
   useEffect(() => {
     if (otp.join('').length === length) {
       setIsOtpComplete(true);
+    } else {
+      setIsOtpComplete(false);
     }
   }, [otp]);
 
