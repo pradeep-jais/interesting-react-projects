@@ -4,6 +4,7 @@ import './styles.css';
 const InputOtp = ({ length, number }) => {
   const [otp, setOtp] = useState(new Array(length).fill(''));
   const [isOtpComplete, setIsOtpComplete] = useState(false);
+  const [isOtpSubmitted, setIsOtpSubmitted] = useState(false);
 
   const inputRefs = useRef([]);
   // console.log(inputRefs);
@@ -33,6 +34,13 @@ const InputOtp = ({ length, number }) => {
 
     // Sent otp to backend
     console.log('OTP submitted:', otp.join(''));
+    // setOtp(
+    //   Array.from({ length }, (_, i) => {
+    //     return '';
+    //   })
+    // );
+
+    setIsOtpSubmitted(true);
   };
 
   const handleKeyDown = (e, index) => {
@@ -97,7 +105,7 @@ const InputOtp = ({ length, number }) => {
         disabled={!isOtpComplete}
         style={{ cursor: isOtpComplete || 'not-allowed' }}
       >
-        submit
+        {isOtpSubmitted ? 'submitted' : 'submit'}
       </button>
     </form>
   );
