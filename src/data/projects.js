@@ -7,4 +7,5 @@ export const projects = [
   { name: 'Password generator', path: 'pwGenerator' },
   { name: 'grid lights', path: 'gridLights' },
   { name: 'Login with OTP', path: 'loginUI' },
+  { name: 'quiz game', path: 'quiz' },
 ];
