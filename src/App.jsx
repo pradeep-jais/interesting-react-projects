@@ -32,7 +32,7 @@ function App() {
           <Route path="projects/pwGenerator" element={<PasswordGenerator />} />
           <Route path="projects/gridLights" element={<GridLights />} />
           <Route path="projects/loginUI" element={<LoginUI />} />
-          <Route path="projects/quiz" element={<QuizApp />} />
+          <Route path="projects/quiz/*" element={<QuizApp />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>
