@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 const difficulty = [
-  { value: 'easy1', label: 'easy' },
-  { value: 'medium2', label: 'medium' },
-  { value: 'hard3', label: 'hard' },
+  { value: 'easy', label: 'easy' },
+  { value: 'medium', label: 'medium' },
+  { value: 'hard', label: 'hard' },
 ];
 
 const QuizSetting = () => {
@@ -13,17 +13,21 @@ const QuizSetting = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = {
-      name: nameRefs.current.value,
-      subject: subjectRefs.current.value,
-      difficulty: difficultyRefs.current.reduce((acc, curr) => {
-        if (curr.checked) {
-          acc = curr.value;
-        }
-        return acc;
-      }, ''),
-    };
-    console.log(formData);
+    //   const formData = {
+    //     name: nameRefs.current.value,
+    //     subject: subjectRefs.current.value,
+    //     difficulty: difficultyRefs.current.reduce((acc, curr) => {
+    //       if (curr.checked) {
+    //         acc = curr.value;
+    //       }
+    //       return acc;
+    //     }, ''),
+    //   };
+    //   console.log(formData);
+
+    const formData = new FormData(e.target);
+    const dataObject = Object.fromEntries(formData.entries());
+    console.log(dataObject);
   };
 
   return (
