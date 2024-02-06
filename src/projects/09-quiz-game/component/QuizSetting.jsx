@@ -1,9 +1,5 @@
 import { useRef } from 'react';
-const difficulty = [
-  { value: 'easy', label: 'easy' },
-  { value: 'medium', label: 'medium' },
-  { value: 'hard', label: 'hard' },
-];
+import { subjects, difficulty } from '../data/constants';
 
 const QuizSetting = () => {
   const nameRefs = useRef();
@@ -13,21 +9,17 @@ const QuizSetting = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //   const formData = {
-    //     name: nameRefs.current.value,
-    //     subject: subjectRefs.current.value,
-    //     difficulty: difficultyRefs.current.reduce((acc, curr) => {
-    //       if (curr.checked) {
-    //         acc = curr.value;
-    //       }
-    //       return acc;
-    //     }, ''),
-    //   };
-    //   console.log(formData);
-
-    const formData = new FormData(e.target);
-    const dataObject = Object.fromEntries(formData.entries());
-    console.log(dataObject);
+    const formData = {
+      name: nameRefs.current.value,
+      subject: subjectRefs.current.value,
+      difficulty: difficultyRefs.current.reduce((acc, curr) => {
+        if (curr.checked) {
+          acc = curr.value;
+        }
+        return acc;
+      }, ''),
+    };
+    console.log(formData);
   };
 
   return (
@@ -43,19 +35,21 @@ const QuizSetting = () => {
 
       {/* Subjects option */}
       <select name="subject" className="form-input subjects" ref={subjectRefs}>
-        <option value="computer" className="subject-option">
-          computer
-        </option>
-        <option value="science" className="subject-option">
-          science
-        </option>
+        {subjects.map((subject) => {
+          const { category, value } = subject;
+          return (
+            <option key={category} value={value} className="subject-option">
+              {category}
+            </option>
+          );
+        })}
       </select>
 
       {/* Difficulty input as radio */}
       <div className="radio-group">
         {difficulty.map((item, index) => {
           return (
-            <div key={item.name} className=" radio-input">
+            <div key={item.value} className="radio-input">
               <input
                 type="radio"
                 name="difficulty"
