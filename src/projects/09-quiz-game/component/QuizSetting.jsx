@@ -1,10 +1,13 @@
 import { useRef } from 'react';
 import { subjects, difficulty } from '../data/constants';
+import { useNavigate } from 'react-router-dom';
 
 const QuizSetting = () => {
   const nameRefs = useRef();
   const subjectRefs = useRef();
   const difficultyRefs = useRef([]);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +22,10 @@ const QuizSetting = () => {
         return acc;
       }, ''),
     };
-    console.log(formData);
+    // console.log(formData);
+
+    // Navigate to play quiz page with quiz setting data
+    navigate('./play', { state: formData });
   };
 
   return (
