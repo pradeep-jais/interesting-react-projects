@@ -1,9 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+
+const QUIZ_API_URL =
+  'https://opentdb.com/api.php?amount=10&type=multiple&category=';
 
 const QuizPlay = () => {
   const [score, setScore] = useState(0);
   const { state: quizSettings } = useLocation();
+  const [questions, setQuestions] = useState(null);
+  console.log(questions);
+  useEffect(() => {
+    const getQuestions = async () => {
+      try {
+        const { data } = await axios.get(
+          `${QUIZ_API_URL}${quizSettings.value}&difficulty=${quizSettings.difficulty}`
+        );
+        setQuestions(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getQuestions();
+  }, [quizSettings]);
 
   return (
     <div className="quiz-play">
@@ -14,7 +33,7 @@ const QuizPlay = () => {
       </div>
       <h6 className="question-no">question: {1}</h6>
       <div className="question-container">
-        <p className="question">What is the capital of India?</p>
+        <p className="question">{questions[0].question}</p>
         <div className="options">
           <span className="option">Kolkata</span>
           <span className="option">new delhi</span>
