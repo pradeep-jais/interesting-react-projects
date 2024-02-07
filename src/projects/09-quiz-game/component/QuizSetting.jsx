@@ -14,7 +14,8 @@ const QuizSetting = () => {
 
     const formData = {
       name: nameRefs.current.value,
-      subject: subjectRefs.current.value,
+      value: subjectRefs.current.value,
+      subject: subjects.find((item) => item.value).category,
       difficulty: difficultyRefs.current.reduce((acc, curr) => {
         if (curr.checked) {
           acc = curr.value;
