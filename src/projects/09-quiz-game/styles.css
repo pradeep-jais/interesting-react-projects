@@ -138,3 +138,11 @@
     margin: 2rem 5rem;
   }
 }
+.active {
+  background: var(--green-dark);
+  box-shadow: none;
+  color: var(--white);
+}
+.active:hover {
+  box-shadow: none;
+}

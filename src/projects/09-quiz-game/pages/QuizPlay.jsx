@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,7 +12,10 @@ const QuizPlay = () => {
   const [questions, setQuestions] = useState(null);
   const [count, setCount] = useState(0);
   const [options, setOptions] = useState([]);
-  console.log(questions);
+
+  const optionRefs = useRef([]);
+
+  // console.log(questions);
 
   useEffect(() => {
     const getQuestions = async () => {
@@ -27,7 +30,7 @@ const QuizPlay = () => {
       }
     };
     getQuestions();
-  }, []);
+  }, [quizSettings]);
 
   useEffect(() => {
     if (!questions) return;
@@ -42,8 +45,19 @@ const QuizPlay = () => {
       [options[i], options[j]] = [options[j], options[i]];
     }
     setOptions(options);
-    console.log(incorrect_answers, options);
-  }, [questions]);
+    // console.log(incorrect_answers, options);
+  }, [questions, count]);
+
+  const chooseOption = (e, index) => {
+    optionRefs.current.forEach((option) => {
+      if (option.classList.contains('active')) {
+        option.classList.remove('active');
+      }
+    });
+    e.target.classList.add('active');
+    const selectedOption = options[index];
+    console.log(selectedOption);
+  };
 
   if (isLoading) {
     return <div className="loading"></div>;
@@ -62,7 +76,14 @@ const QuizPlay = () => {
         <div className="options">
           {options.map((option, i) => {
             return (
-              <span key={i} className="option">
+              <span
+                key={i}
+                className="option"
+                onClick={(e) => chooseOption(e, i)}
+                ref={(option) => {
+                  optionRefs.current[i] = option;
+                }}
+              >
                 {option}
               </span>
             );
