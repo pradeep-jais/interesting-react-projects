@@ -6,14 +6,14 @@ const QUIZ_API_URL =
   'https://opentdb.com/api.php?amount=10&type=multiple&category=';
 
 const QuizPlay = () => {
-  const [score, setScore] = useState(0);
+  let [score, setScore] = useState(0);
   const { state: quizSettings } = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [questions, setQuestions] = useState(null);
   // const [count, setCount] = useState(0);
   // const [options, setOptions] = useState([]);
   const [question, setQuestion] = useState({
-    count: 1,
+    count: 0,
     statement: '',
     options: [],
     correct_answer: '',
@@ -67,6 +67,9 @@ const QuizPlay = () => {
   const chooseOption = (index) => {
     const selectedOption = question.options[index];
 
+    if (selectedOption === question.correct_answer) {
+      setScore(score + 1);
+    }
     setQuestion((question) => {
       return { ...question, selectedOption };
     });
@@ -94,9 +97,10 @@ const QuizPlay = () => {
   };
 
   const handleNextQuestion = () => {
-    // Check for correct answer
-    // if()
-    const newQuestionObj = { ...question };
+    const newQuestionObj = { ...question, selectedOption: null };
+    if (newQuestionObj.count >= 9) {
+      return;
+    }
     newQuestionObj.count++;
 
     setQuestion(newQuestionObj);
@@ -119,15 +123,16 @@ const QuizPlay = () => {
         <div className="options">
           {question.options.map((option, i) => {
             return (
-              <span
+              <button
                 key={i}
                 className={`option ${
                   question.selectedOption && checkOption(option)
                 }`}
                 onClick={() => chooseOption(i)}
+                disabled={question.selectedOption}
               >
                 {option}
-              </span>
+              </button>
             );
           })}
         </div>
