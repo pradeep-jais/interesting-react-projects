@@ -17,7 +17,7 @@ const QuizPlay = () => {
     statement: '',
     options: [],
     correct_answer: '',
-    selectedOptionIndex: null,
+    selectedOption: '',
   });
 
   // const optionRefs = useRef([]);
@@ -37,7 +37,7 @@ const QuizPlay = () => {
       }
     };
     getQuestions();
-  }, []);
+  }, [quizSettings]);
 
   useEffect(() => {
     if (!questions) return;
@@ -55,23 +55,42 @@ const QuizPlay = () => {
       // swapping
       [options[i], options[j]] = [options[j], options[i]];
     }
-    const newQuestionObj = { ...question, statement, correct_answer, options };
+    const newQuestionObj = {
+      ...question,
+      statement,
+      correct_answer,
+      options,
+    };
     setQuestion(newQuestionObj);
-    console.log(newQuestionObj);
   }, [questions, question.count]);
 
-  const chooseOption = (e, index) => {
+  const chooseOption = (index) => {
     const selectedOption = question.options[index];
 
-    if (selectedOption === question.correct_answer) {
-      e.target.classList.add('active');
-    } else if (selectedOption != question.correct_answer) {
-      e.target.classList.add('wrong');
+    setQuestion((question) => {
+      return { ...question, selectedOption };
+    });
+  };
+
+  const checkOption = (option) => {
+    if (
+      option === question.selectedOption &&
+      option === question.correct_answer
+    ) {
+      return 'active';
+    } else if (
+      option === question.selectedOption &&
+      option != question.correct_answer
+    ) {
+      return 'wrong';
+    } else if (
+      question.selectedOption != question.correct_answer &&
+      option === question.correct_answer
+    ) {
+      return 'active';
+    } else {
+      return '';
     }
-    const updatedOptions = question.options.map((option, i) =>
-      i === index ? { option, selected: true } : option
-    );
-    console.log(updatedOptions);
   };
 
   const handleNextQuestion = () => {
@@ -102,8 +121,10 @@ const QuizPlay = () => {
             return (
               <span
                 key={i}
-                className="option"
-                onClick={(e) => chooseOption(e, i)}
+                className={`option ${
+                  question.selectedOption && checkOption(option)
+                }`}
+                onClick={() => chooseOption(i)}
               >
                 {option}
               </span>

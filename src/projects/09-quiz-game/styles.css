@@ -138,11 +138,15 @@
     margin: 2rem 5rem;
   }
 }
-.active {
+.active,
+.wrong {
   background: var(--green-dark);
   box-shadow: none;
   color: var(--white);
 }
 .active:hover {
   box-shadow: none;
+}
+.wrong {
+  background: var(--red-dark);
 }
