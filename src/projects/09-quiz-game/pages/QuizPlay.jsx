@@ -10,10 +10,17 @@ const QuizPlay = () => {
   const { state: quizSettings } = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [questions, setQuestions] = useState(null);
-  const [count, setCount] = useState(0);
-  const [options, setOptions] = useState([]);
+  // const [count, setCount] = useState(0);
+  // const [options, setOptions] = useState([]);
+  const [question, setQuestion] = useState({
+    count: 1,
+    statement: '',
+    options: [],
+    correct_answer: '',
+    selectedOptionIndex: null,
+  });
 
-  const optionRefs = useRef([]);
+  // const optionRefs = useRef([]);
 
   // console.log(questions);
 
@@ -30,11 +37,15 @@ const QuizPlay = () => {
       }
     };
     getQuestions();
-  }, [quizSettings]);
+  }, []);
 
   useEffect(() => {
     if (!questions) return;
-    const { correct_answer, incorrect_answers } = questions[count];
+    const {
+      question: statement,
+      correct_answer,
+      incorrect_answers,
+    } = questions[question.count];
 
     const options = [...incorrect_answers, correct_answer];
 
@@ -44,19 +55,32 @@ const QuizPlay = () => {
       // swapping
       [options[i], options[j]] = [options[j], options[i]];
     }
-    setOptions(options);
-    // console.log(incorrect_answers, options);
-  }, [questions, count]);
+    const newQuestionObj = { ...question, statement, correct_answer, options };
+    setQuestion(newQuestionObj);
+    console.log(newQuestionObj);
+  }, [questions, question.count]);
 
   const chooseOption = (e, index) => {
-    optionRefs.current.forEach((option) => {
-      if (option.classList.contains('active')) {
-        option.classList.remove('active');
-      }
-    });
-    e.target.classList.add('active');
-    const selectedOption = options[index];
-    console.log(selectedOption);
+    const selectedOption = question.options[index];
+
+    if (selectedOption === question.correct_answer) {
+      e.target.classList.add('active');
+    } else if (selectedOption != question.correct_answer) {
+      e.target.classList.add('wrong');
+    }
+    const updatedOptions = question.options.map((option, i) =>
+      i === index ? { option, selected: true } : option
+    );
+    console.log(updatedOptions);
+  };
+
+  const handleNextQuestion = () => {
+    // Check for correct answer
+    // if()
+    const newQuestionObj = { ...question };
+    newQuestionObj.count++;
+
+    setQuestion(newQuestionObj);
   };
 
   if (isLoading) {
@@ -70,19 +94,16 @@ const QuizPlay = () => {
         <span>{quizSettings.subject}</span>
         <span>score: {score}</span>
       </div>
-      <h6 className="question-no">question: {count + 1}</h6>
+      <h6 className="question-no">question: {question.count}</h6>
       <div className="question-container">
-        <p className="question">{questions[count].question}</p>
+        <p className="question">{question.statement}</p>
         <div className="options">
-          {options.map((option, i) => {
+          {question.options.map((option, i) => {
             return (
               <span
                 key={i}
                 className="option"
                 onClick={(e) => chooseOption(e, i)}
-                ref={(option) => {
-                  optionRefs.current[i] = option;
-                }}
               >
                 {option}
               </span>
@@ -91,7 +112,9 @@ const QuizPlay = () => {
         </div>
         <div className="btns">
           <div className="btn btn-quit">quit</div>
-          <div className="btn btn-next">next question</div>
+          <div className="btn btn-next" onClick={handleNextQuestion}>
+            next question
+          </div>
         </div>
       </div>
     </div>
