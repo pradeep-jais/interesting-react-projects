@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ErrorAlert from '../component/ErrorAlert';
-import Error from '../../../components/Error';
+import ErrorPage from '../../../components/Error';
 
 const QUIZ_API_URL =
   'https://opentdb.com/api.php?amount=10&type=multiple&category=';
@@ -36,6 +36,11 @@ const QuizPlay = () => {
         const { data } = await axios.get(
           `${QUIZ_API_URL}${quizSettings.value}&difficulty=${quizSettings.difficulty}`
         );
+        if (data.response_code === 1) {
+          throw new Error(
+            'Questions not available for your selected category.'
+          );
+        }
         setQuestions(data.results);
         setIsLoading(false);
       } catch (error) {
@@ -123,12 +128,16 @@ const QuizPlay = () => {
     setQuestion(newQuestionObj);
   };
 
+  const handleQuit = () => {
+    navigate('../');
+  };
+
   if (isLoading) {
     return <div className="loading"></div>;
   }
 
   if (error) {
-    return <Error errorMessage={error} />;
+    return <ErrorPage errorMessage={error} />;
   }
 
   return (
@@ -159,7 +168,9 @@ const QuizPlay = () => {
           })}
         </div>
         <div className="btns">
-          <button className="btn btn-quit">quit</button>
+          <button className="btn btn-quit" onClick={handleQuit}>
+            quit
+          </button>
           <button className="btn btn-next" onClick={handleNextQuestion}>
             {question.count >= 9 ? 'finish quiz' : 'next question'}
           </button>
