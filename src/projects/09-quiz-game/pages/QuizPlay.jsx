@@ -120,7 +120,13 @@ const QuizPlay = () => {
 
     // navigate to see result and finish quiz
     if (newQuestionObj.count >= 9) {
-      navigate('../result', { state: { score, name: quizSettings.name } });
+      navigate('../result', {
+        state: {
+          score,
+          name: quizSettings.name,
+          subject: quizSettings.subject,
+        },
+      });
       return;
     }
     newQuestionObj.count++;

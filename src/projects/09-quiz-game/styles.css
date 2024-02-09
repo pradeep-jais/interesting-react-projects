@@ -193,3 +193,14 @@ Quiz play
 Quiz Result
 ###############
  */
+.quiz-result {
+  text-align: center;
+  padding: 3rem 0;
+  min-height: 20rem;
+}
+.quiz-result p {
+  text-transform: capitalize;
+  max-width: 15rem;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
