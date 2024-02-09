@@ -1,11 +1,13 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { subjects, difficulty } from '../data/constants';
 import { useNavigate } from 'react-router-dom';
+import ErrorAlert from './ErrorAlert';
 
 const QuizSetting = () => {
   const nameRefs = useRef();
   const subjectRefs = useRef();
   const difficultyRefs = useRef([]);
+  const [alert, setAlert] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,7 +26,11 @@ const QuizSetting = () => {
         return acc;
       }, ''),
     };
-    // console.log(formData);
+
+    if (!formData.name || !formData.value || !formData.difficulty) {
+      setAlert(true);
+      return;
+    }
 
     // Navigate to play quiz page with quiz setting data
     navigate('./play', { state: formData });
@@ -33,6 +39,7 @@ const QuizSetting = () => {
   return (
     <form className="form settings-form" onSubmit={handleSubmit}>
       <h4>Quiz setting</h4>
+      {alert && <ErrorAlert>please provide all the fields:)</ErrorAlert>}
       <input
         type="text"
         placeholder="enter your name"
