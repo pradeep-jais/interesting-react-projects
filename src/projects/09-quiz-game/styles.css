@@ -10,6 +10,14 @@ Quiz App
 .quiz-app .underline {
   width: 15rem;
 }
+.error-alert {
+  text-align: center;
+  text-transform: capitalize;
+  padding: 0.25rem 1rem;
+  background: var(--red-light);
+  color: var(--red-dark);
+  border-radius: var(--border-radius);
+}
 /*
 ###############
 Quiz Home

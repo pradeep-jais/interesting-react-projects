@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ErrorAlert from '../component/ErrorAlert';
 
 const QUIZ_API_URL =
   'https://opentdb.com/api.php?amount=10&type=multiple&category=';
@@ -19,6 +20,9 @@ const QuizPlay = () => {
     correct_answer: '',
     selectedOption: '',
   });
+  const [alert, setAlert] = useState(false);
+
+  const navigate = useNavigate();
 
   // const optionRefs = useRef([]);
 
@@ -73,6 +77,8 @@ const QuizPlay = () => {
     setQuestion((question) => {
       return { ...question, selectedOption };
     });
+
+    setAlert(false);
   };
 
   const checkOption = (option) => {
@@ -97,12 +103,18 @@ const QuizPlay = () => {
   };
 
   const handleNextQuestion = () => {
-    const newQuestionObj = { ...question, selectedOption: null };
+    const newQuestionObj = { ...question };
+    if (!newQuestionObj.selectedOption) {
+      setAlert(true);
+    }
+
+    // navigate to see result and finish quiz
     if (newQuestionObj.count >= 9) {
+      navigate('../result', { state: { score, name: quizSettings.name } });
       return;
     }
     newQuestionObj.count++;
-
+    newQuestionObj.selectedOption = null;
     setQuestion(newQuestionObj);
   };
 
@@ -117,9 +129,10 @@ const QuizPlay = () => {
         <span>{quizSettings.subject}</span>
         <span>score: {score}</span>
       </div>
-      <h6 className="question-no">question: {question.count}</h6>
+      <h6 className="question-no">question: {question.count + 1}</h6>
       <div className="question-container">
         <p className="question">{question.statement}</p>
+        {alert && <ErrorAlert>please select an option first!</ErrorAlert>}
         <div className="options">
           {question.options.map((option, i) => {
             return (
@@ -137,10 +150,10 @@ const QuizPlay = () => {
           })}
         </div>
         <div className="btns">
-          <div className="btn btn-quit">quit</div>
-          <div className="btn btn-next" onClick={handleNextQuestion}>
-            next question
-          </div>
+          <button className="btn btn-quit">quit</button>
+          <button className="btn btn-next" onClick={handleNextQuestion}>
+            {question.count >= 9 ? 'finish quiz' : 'next question'}
+          </button>
         </div>
       </div>
     </div>
