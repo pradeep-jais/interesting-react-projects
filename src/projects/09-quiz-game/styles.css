@@ -1,3 +1,20 @@
+/*
+###############
+Quiz App
+###############
+ */
+.quiz-app .title {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.quiz-app .underline {
+  width: 15rem;
+}
+/*
+###############
+Quiz Home
+###############
+ */
 .quiz-home {
   width: 100%;
   padding: 1rem;
@@ -60,6 +77,11 @@
     width: 45%;
   }
 }
+/*
+###############
+Quiz play
+###############
+ */
 .user {
   background: var(--primary-100);
   color: var(--primary-900);
@@ -74,12 +96,12 @@
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 .quiz-score span {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   text-transform: capitalize;
-  color: var(--gray-600);
+  color: var(--gray-700);
 }
 .question-no {
   text-align: center;
@@ -87,8 +109,12 @@
   text-transform: capitalize;
 }
 .question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 25rem;
   padding: 2rem;
-  margin: 1rem;
+  margin: 0.5rem 1rem;
   margin-bottom: 3rem;
   border: 1px solid var(--gray-900);
   border-radius: var(--border-radius);
@@ -107,7 +133,8 @@
   margin-bottom: 2rem;
 }
 .option {
-  padding: 0.25rem 0;
+  color: var(--primary-900);
+  padding: 0.75rem 0;
   text-align: center;
   text-transform: capitalize;
   letter-spacing: var(--letter-spacing);
@@ -135,7 +162,7 @@
     margin: 1rem auto 3rem auto;
   }
   .quiz-score {
-    margin: 2rem 5rem;
+    margin: 2rem 6rem;
   }
 }
 .active,
@@ -150,3 +177,11 @@
 .wrong {
   background: var(--red-dark);
 }
+.wrong:hover {
+  box-shadow: none;
+}
+/*
+###############
+Quiz Result
+###############
+ */
