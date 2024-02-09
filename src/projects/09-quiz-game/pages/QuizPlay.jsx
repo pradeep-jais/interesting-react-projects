@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ErrorAlert from '../component/ErrorAlert';
+import Error from '../../../components/Error';
 
 const QUIZ_API_URL =
   'https://opentdb.com/api.php?amount=10&type=multiple&category=';
@@ -21,6 +22,7 @@ const QuizPlay = () => {
     selectedOption: '',
   });
   const [alert, setAlert] = useState(false);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -38,6 +40,8 @@ const QuizPlay = () => {
         setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
+        setError(error.message);
       }
     };
     getQuestions();
@@ -106,6 +110,7 @@ const QuizPlay = () => {
     const newQuestionObj = { ...question };
     if (!newQuestionObj.selectedOption) {
       setAlert(true);
+      return;
     }
 
     // navigate to see result and finish quiz
@@ -120,6 +125,10 @@ const QuizPlay = () => {
 
   if (isLoading) {
     return <div className="loading"></div>;
+  }
+
+  if (error) {
+    return <Error errorMessage={error} />;
   }
 
   return (
