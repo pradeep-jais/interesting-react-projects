@@ -1,17 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ErrorAlert from '../component/ErrorAlert';
 import ErrorPage from '../../../components/Error';
 import Options from '../component/Options';
+import shuffleArr from '../utils/shuffleArr';
+import useFetchData from '../hooks/useFetchData';
 
-const QUIZ_API_URL =
+const QUIZ_API =
   'https://opentdb.com/api.php?amount=10&type=multiple&category=';
 
 const QuizPlay = () => {
   const { state: quizSettings } = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const [questions, setQuestions] = useState(null);
+  const { questions, isLoading, error } = useFetchData(
+    `${QUIZ_API}${quizSettings.value}&difficulty=${quizSettings.difficulty}`
+  );
   const [question, setQuestion] = useState({
     count: 0,
     statement: '',
@@ -21,35 +23,8 @@ const QuizPlay = () => {
     selectedOption: '',
   });
   const [alert, setAlert] = useState(false);
-  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-
-  // const optionRefs = useRef([]);
-
-  // console.log(questions);
-
-  useEffect(() => {
-    const getQuestions = async () => {
-      try {
-        const { data } = await axios.get(
-          `${QUIZ_API_URL}${quizSettings.value}&difficulty=${quizSettings.difficulty}`
-        );
-        if (data.response_code === 1) {
-          throw new Error(
-            'Questions not available for your selected category.'
-          );
-        }
-        setQuestions(data.results);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setIsLoading(false);
-        setError(error.message);
-      }
-    };
-    getQuestions();
-  }, [quizSettings]);
 
   useEffect(() => {
     if (!questions) return;
@@ -61,17 +36,11 @@ const QuizPlay = () => {
 
     const options = [...incorrect_answers, correct_answer];
 
-    // shuffle options array
-    for (let i = options.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * i + 1);
-      // swapping
-      [options[i], options[j]] = [options[j], options[i]];
-    }
     const newQuestionObj = {
       ...question,
       statement,
       correct_answer,
-      options,
+      options: shuffleArr(...options),
     };
     setQuestion(newQuestionObj);
   }, [questions, question.count]);
