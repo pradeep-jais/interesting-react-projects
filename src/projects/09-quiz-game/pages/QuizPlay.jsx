@@ -3,20 +3,19 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ErrorAlert from '../component/ErrorAlert';
 import ErrorPage from '../../../components/Error';
+import Options from '../component/Options';
 
 const QUIZ_API_URL =
   'https://opentdb.com/api.php?amount=10&type=multiple&category=';
 
 const QuizPlay = () => {
-  let [score, setScore] = useState(0);
   const { state: quizSettings } = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [questions, setQuestions] = useState(null);
-  // const [count, setCount] = useState(0);
-  // const [options, setOptions] = useState([]);
   const [question, setQuestion] = useState({
     count: 0,
     statement: '',
+    score: 0,
     options: [],
     correct_answer: '',
     selectedOption: '',
@@ -64,7 +63,7 @@ const QuizPlay = () => {
 
     // shuffle options array
     for (let i = options.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * i);
+      const j = Math.floor(Math.random() * i + 1);
       // swapping
       [options[i], options[j]] = [options[j], options[i]];
     }
@@ -77,40 +76,6 @@ const QuizPlay = () => {
     setQuestion(newQuestionObj);
   }, [questions, question.count]);
 
-  const chooseOption = (index) => {
-    const selectedOption = question.options[index];
-
-    if (selectedOption === question.correct_answer) {
-      setScore(score + 1);
-    }
-    setQuestion((question) => {
-      return { ...question, selectedOption };
-    });
-
-    setAlert(false);
-  };
-
-  const checkOption = (option) => {
-    if (
-      option === question.selectedOption &&
-      option === question.correct_answer
-    ) {
-      return 'active';
-    } else if (
-      option === question.selectedOption &&
-      option != question.correct_answer
-    ) {
-      return 'wrong';
-    } else if (
-      question.selectedOption != question.correct_answer &&
-      option === question.correct_answer
-    ) {
-      return 'active';
-    } else {
-      return '';
-    }
-  };
-
   const handleNextQuestion = () => {
     const newQuestionObj = { ...question };
     if (!newQuestionObj.selectedOption) {
@@ -122,7 +87,7 @@ const QuizPlay = () => {
     if (newQuestionObj.count >= 9) {
       navigate('../result', {
         state: {
-          score,
+          score: question.score,
           name: quizSettings.name,
           subject: quizSettings.subject,
         },
@@ -151,28 +116,18 @@ const QuizPlay = () => {
       <h5 className="user">welcome! :) {quizSettings.name}</h5>
       <div className="quiz-score">
         <span>{quizSettings.subject}</span>
-        <span>score: {score}</span>
+        <span>score: {question.score}</span>
       </div>
       <h6 className="question-no">question: {question.count + 1}</h6>
       <div className="question-container">
         <p className="question">{question.statement}</p>
         {alert && <ErrorAlert>please select an option first!</ErrorAlert>}
-        <div className="options">
-          {question.options.map((option, i) => {
-            return (
-              <button
-                key={i}
-                className={`option ${
-                  question.selectedOption && checkOption(option)
-                }`}
-                onClick={() => chooseOption(i)}
-                disabled={question.selectedOption}
-              >
-                {option}
-              </button>
-            );
-          })}
-        </div>
+        <Options
+          question={question}
+          setQuestion={setQuestion}
+          setAlert={setAlert}
+        />
+
         <div className="btns">
           <button className="btn btn-quit" onClick={handleQuit}>
             quit
