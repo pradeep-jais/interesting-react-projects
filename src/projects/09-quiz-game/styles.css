@@ -3,9 +3,17 @@
 Quiz App
 ###############
  */
+.quiz-app {
+  background: var(--primary-50);
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--gray-300);
+}
 .quiz-app .title {
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+.quiz-app h3 {
+  color: var(--primary-900);
 }
 .quiz-app .underline {
   width: 15rem;
@@ -117,14 +125,14 @@ Quiz play
   text-transform: capitalize;
 }
 .question-container {
+  background: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 25rem;
   padding: 2rem;
   margin: 0.5rem 1rem;
-  margin-bottom: 3rem;
-  border: 1px solid var(--gray-900);
+  border: 1px solid var(--gray-200);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-dark);
 }
@@ -141,7 +149,8 @@ Quiz play
   margin-bottom: 2rem;
 }
 .option {
-  color: var(--primary-900);
+  background: var(--white);
+  color: var(--gray-900);
   padding: 0.75rem 0;
   text-align: center;
   text-transform: capitalize;

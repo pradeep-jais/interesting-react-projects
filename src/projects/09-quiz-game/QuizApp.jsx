@@ -9,7 +9,7 @@ const QuizApp = () => {
   return (
     <section className="quiz-app">
       <div className="section-center">
-        <hr />
+        {/* <hr /> */}
         <Header />
         <Routes>
           <Route path="/" element={<QuizHome />} />
