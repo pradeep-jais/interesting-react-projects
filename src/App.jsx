@@ -14,6 +14,7 @@ import Footer from './components/Footer/';
 import Projects from './components/Projects';
 import LoginUI from './projects/08otpLoginUI';
 import QuizApp from './projects/09-quiz-game';
+import MultiSelectSearch from './projects/10-multi-select-search';
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
           <Route path="projects/gridLights" element={<GridLights />} />
           <Route path="projects/loginUI" element={<LoginUI />} />
           <Route path="projects/quiz/*" element={<QuizApp />} />
+          <Route
+            path="projects/multiSelectSearch"
+            element={<MultiSelectSearch />}
+          />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>

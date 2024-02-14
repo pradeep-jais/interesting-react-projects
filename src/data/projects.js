@@ -8,4 +8,5 @@ export const projects = [
   { name: 'grid lights', path: 'gridLights' },
   { name: 'Login with OTP', path: 'loginUI' },
   { name: 'quiz game', path: 'quiz' },
+  { name: 'multiple select search', path: 'multiSelectSearch' },
 ];
