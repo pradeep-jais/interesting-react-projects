@@ -49,7 +49,21 @@ const MultiSelectSearch = () => {
     setSearchTerm('');
   }
 
-  // console.log(users);
+  const removeUser = (user) => {
+    const newUser = selectedUsers.filter((item) => item.email !== user.email);
+
+    setSelectedUsers(newUser);
+  };
+
+  const handleKeyDown = (e) => {
+    if (selectedUsers.length < 1) return;
+
+    if (e.key === 'Backspace') {
+      const newSelectedUsers = [...selectedUsers];
+      newSelectedUsers.pop();
+      setSelectedUsers(newSelectedUsers);
+    }
+  };
 
   if (error) {
     return <ErrorPage errorMessage={error} />;
@@ -66,7 +80,9 @@ const MultiSelectSearch = () => {
                 key={email}
                 fullName={`${firstName} ${lastName}`}
                 image={image}
-                onClick={() => {}}
+                onClick={() => {
+                  removeUser(user);
+                }}
               />
             );
           })}
@@ -75,6 +91,7 @@ const MultiSelectSearch = () => {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={(e) => handleKeyDown(e)}
             placeholder="search for a user..."
           />
         </div>

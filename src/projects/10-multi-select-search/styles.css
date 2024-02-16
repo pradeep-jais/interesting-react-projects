@@ -15,12 +15,13 @@
 .search-input input {
   align-self: stretch;
   flex: 1;
-  /* border: transparent; */
+  border: transparent;
 }
 .search-input input:focus {
   outline: none;
 }
 .search-suggestion {
+  max-width: var(--fixed-width);
   max-height: 300px;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -51,7 +52,6 @@
   padding: 0 1rem;
   border: 1px solid var(--gray-900);
   border-radius: 20px;
-  cursor: pointer;
 }
 .user-pill img {
   height: 1rem;
