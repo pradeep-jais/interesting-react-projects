@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import './styles.css';
 import axios from 'axios';
 import ErrorPage from '../../components/Error';
+import Pills from './Pills';
 
 const USER_API = 'https://dummyjson.com/users/search?q=';
 
 const MultiSelectSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [users, setUsers] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -31,6 +33,11 @@ const MultiSelectSearch = () => {
     fetchUser();
   }, [searchTerm]);
 
+  function selectUser(user) {
+    setSelectedUsers([...selectedUsers, user]);
+    setSearchTerm('');
+  }
+
   console.log(users);
 
   if (error) {
@@ -41,7 +48,17 @@ const MultiSelectSearch = () => {
     <section className="multi-select-search">
       <div className="section-center">
         <div className="search-input">
-          {/* Pills */}
+          {selectedUsers.map((user) => {
+            const { firstName, lastName, email, image } = user;
+            return (
+              <Pills
+                key={email}
+                fullName={`${firstName} ${lastName}`}
+                image={image}
+                onClick={() => {}}
+              />
+            );
+          })}
           <div>
             <input
               type="text"
@@ -54,19 +71,29 @@ const MultiSelectSearch = () => {
         {isLoading ? (
           <div className="loading" style={{ marginTop: '3rem' }}></div>
         ) : (
-          <div className="search-suggestion">
-            {users.map((user) => {
-              const { firstName, lastName, email, image } = user;
-              return (
-                <div key={email} className="user-name">
-                  <img src={image} alt={firstName} />
-                  <span>
-                    {firstName} {lastName}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          <>
+            {users.length > 0 && (
+              <div className="search-suggestion">
+                {users.map((user) => {
+                  const { firstName, lastName, email, image } = user;
+                  return (
+                    <div
+                      key={email}
+                      className="user-name"
+                      onClick={() => {
+                        selectUser(user);
+                      }}
+                    >
+                      <img src={image} alt={firstName} />
+                      <span>
+                        {firstName} {lastName}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

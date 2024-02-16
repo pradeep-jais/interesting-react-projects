@@ -22,6 +22,7 @@
   overflow-y: scroll;
   scrollbar-width: none;
   border: 1px solid var(--gray-900);
+  border-top: none;
   border-radius: var(--border-radius);
 }
 .user-name {
@@ -31,10 +32,24 @@
   gap: 1rem;
   border: 1px solid var(--gray-300);
   border-radius: var(--border-radius);
+  cursor: pointer;
 }
 .user-name span {
   font-size: large;
 }
 .user-name img {
   height: 1.25rem;
+}
+.user-pill {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--gray-900);
+  border-radius: 20px;
+  cursor: pointer;
+}
+.user-pill img {
+  height: 1rem;
 }
