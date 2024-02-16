@@ -34,11 +34,22 @@ const MultiSelectSearch = () => {
   }, [searchTerm]);
 
   function selectUser(user) {
-    setSelectedUsers([...selectedUsers, user]);
+    let newUser = [];
+    if (selectedUsers.length < 1) {
+      newUser = [user];
+    } else {
+      const flag = selectedUsers.find((item) => item.email === user.email);
+      if (!flag) {
+        newUser = [...selectedUsers, user];
+      } else {
+        newUser = [...selectedUsers];
+      }
+    }
+    setSelectedUsers(newUser);
     setSearchTerm('');
   }
 
-  console.log(users);
+  // console.log(users);
 
   if (error) {
     return <ErrorPage errorMessage={error} />;
@@ -59,25 +70,24 @@ const MultiSelectSearch = () => {
               />
             );
           })}
-          <div>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="search for a user..."
-            />
-          </div>
+
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="search for a user..."
+          />
         </div>
         {isLoading ? (
           <div className="loading" style={{ marginTop: '3rem' }}></div>
         ) : (
           <>
             {users.length > 0 && (
-              <div className="search-suggestion">
+              <ul className="search-suggestion">
                 {users.map((user) => {
                   const { firstName, lastName, email, image } = user;
                   return (
-                    <div
+                    <li
                       key={email}
                       className="user-name"
                       onClick={() => {
@@ -88,10 +98,10 @@ const MultiSelectSearch = () => {
                       <span>
                         {firstName} {lastName}
                       </span>
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             )}
           </>
         )}

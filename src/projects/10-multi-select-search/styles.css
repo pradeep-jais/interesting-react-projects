@@ -8,11 +8,14 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
+  min-height: 2rem;
   border: 1px solid var(--gray-900);
   border-radius: var(--border-radius);
 }
 .search-input input {
-  border: transparent;
+  align-self: stretch;
+  flex: 1;
+  /* border: transparent; */
 }
 .search-input input:focus {
   outline: none;
