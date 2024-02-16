@@ -12,6 +12,7 @@ const MultiSelectSearch = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  // const [isUserExist,setIsUserExist]=useState(false);
 
   const inputRef = useRef();
 
@@ -61,6 +62,7 @@ const MultiSelectSearch = () => {
   };
 
   const handleKeyDown = (e) => {
+    if (searchTerm) return;
     if (selectedUsers.length < 1) return;
 
     if (e.key === 'Backspace') {
@@ -125,6 +127,9 @@ const MultiSelectSearch = () => {
                   );
                 })}
               </ul>
+            )}
+            {users.length < 1 && searchTerm && (
+              <p className="user-alert">No user matched for your search</p>
             )}
           </>
         )}
