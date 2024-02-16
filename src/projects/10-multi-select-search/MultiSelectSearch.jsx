@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './styles.css';
 import axios from 'axios';
 import ErrorPage from '../../components/Error';
@@ -12,6 +12,8 @@ const MultiSelectSearch = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const inputRef = useRef();
 
   useEffect(() => {
     if (searchTerm.length < 1) {
@@ -47,6 +49,9 @@ const MultiSelectSearch = () => {
     }
     setSelectedUsers(newUser);
     setSearchTerm('');
+
+    // Cursor focused on input after new user selected
+    inputRef.current.focus();
   }
 
   const removeUser = (user) => {
@@ -92,6 +97,7 @@ const MultiSelectSearch = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}
+            ref={inputRef}
             placeholder="search for a user..."
           />
         </div>
