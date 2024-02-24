@@ -15,6 +15,7 @@ const MultiSelectSearch = () => {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   const inputRef = useRef();
+  const usersRef = useRef();
 
   useEffect(() => {
     if (searchTerm.length < 1) {
@@ -67,9 +68,11 @@ const MultiSelectSearch = () => {
     if (e.key === 'ArrowDown' && highlightedIndex < users.length - 1) {
       e.preventDefault();
       setHighlightedIndex(highlightedIndex + 1);
+      scrollToHighlightedUser();
     } else if (e.key === 'ArrowUp' && highlightedIndex > 0) {
       e.preventDefault();
       setHighlightedIndex(highlightedIndex - 1);
+      scrollToHighlightedUser();
     } else if (
       e.key === 'Enter' &&
       highlightedIndex >= 0 &&
@@ -82,6 +85,15 @@ const MultiSelectSearch = () => {
       const newSelectedUsers = [...selectedUsers];
       newSelectedUsers.pop();
       setSelectedUsers(newSelectedUsers);
+    }
+  };
+
+  const scrollToHighlightedUser = () => {
+    if (usersRef.current && usersRef.current.children[highlightedIndex]) {
+      usersRef.current.children[highlightedIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
     }
   };
 
@@ -121,7 +133,7 @@ const MultiSelectSearch = () => {
         ) : (
           <>
             {users.length > 0 && (
-              <ul className="search-suggestion">
+              <ul className="search-suggestion" ref={usersRef}>
                 {users.map((user, index) => {
                   const { firstName, lastName, email, image } = user;
                   return (
