@@ -13,6 +13,20 @@ View project: https://interesting-react-projects.netlify.app/
 - All different projects will sit inside the projects folder in the src
 - Each project has all its parts like utility, components, styles, etc inside its folder
 
+### Top features of the project
+
+- #### Scalability and maintainability
+- Projects can be scaled up because of its good folder structure
+- App is divided into various reusable modules with independent components and styles as well as global custom hooks, utility functions and constants data.
+
+- #### React Router DOM
+- It uses react router package to handle routing efficiently
+- Nested routing technique is used in Quiz game project
+
+- #### Breadcrumbs
+- Breadcrumbs feature is added for nested routes to indicate the page you are on.
+- Also you can navigate on different pages using breadcrumbs.
+
 1. ### Carousel: Image Slider
 
 - Implementing simple carousel(image slider) functionality in React JS with functions like next image, previous image, auto update image after a few seconds and go to any images
@@ -21,8 +35,9 @@ View project: https://interesting-react-projects.netlify.app/
 
 - Implement an interactive like button functionality
 - Changes color on hover or liked/unlike
-  
+
   #### API POST request
+
 - URL: https://www.greatfrontend.com/api/questions/like-button
 - HTTP Method: 'POST'
   Content Type:'json'
