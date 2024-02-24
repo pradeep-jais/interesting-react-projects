@@ -65,3 +65,6 @@
   background: var(--red-light);
   color: var(--red-dark);
 }
+.highlight-user {
+  background: var(--gray-200);
+}

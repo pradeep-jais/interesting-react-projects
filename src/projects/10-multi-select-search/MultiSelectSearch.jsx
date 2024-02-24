@@ -12,7 +12,7 @@ const MultiSelectSearch = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [isUserExist,setIsUserExist]=useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   const inputRef = useRef();
 
@@ -22,6 +22,7 @@ const MultiSelectSearch = () => {
       return;
     }
     const fetchUser = async () => {
+      setHighlightedIndex(-1);
       setIsLoading(true);
       try {
         const { data } = await axios.get(`${USER_API}${searchTerm}`);
@@ -62,10 +63,22 @@ const MultiSelectSearch = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (searchTerm) return;
-    if (selectedUsers.length < 1) return;
+    // Navigate to suggested users suggestion tab on ArrorDown
+    if (e.key === 'ArrowDown' && highlightedIndex < users.length - 1) {
+      e.preventDefault();
+      setHighlightedIndex(highlightedIndex + 1);
+    } else if (e.key === 'ArrowUp' && highlightedIndex > 0) {
+      e.preventDefault();
+      setHighlightedIndex(highlightedIndex - 1);
+    } else if (
+      e.key === 'Enter' &&
+      highlightedIndex >= 0 &&
+      highlightedIndex < users.length
+    ) {
+      selectUser(users[highlightedIndex]);
+    }
 
-    if (e.key === 'Backspace') {
+    if (e.key === 'Backspace' && selectedUsers.length > 0 && !searchTerm) {
       const newSelectedUsers = [...selectedUsers];
       newSelectedUsers.pop();
       setSelectedUsers(newSelectedUsers);
@@ -109,12 +122,14 @@ const MultiSelectSearch = () => {
           <>
             {users.length > 0 && (
               <ul className="search-suggestion">
-                {users.map((user) => {
+                {users.map((user, index) => {
                   const { firstName, lastName, email, image } = user;
                   return (
                     <li
                       key={email}
-                      className="user-name"
+                      className={`user-name ${
+                        index === highlightedIndex ? 'highlight-user' : ''
+                      }`}
                       onClick={() => {
                         selectUser(user);
                       }}
