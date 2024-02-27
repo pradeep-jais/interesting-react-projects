@@ -50,7 +50,7 @@ Quiz Home
   font-family: var(--body-font);
   color: var(--primary-900);
 }
-.form-input {
+.settings-form .form-input {
   margin-top: 1rem;
 }
 
