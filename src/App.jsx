@@ -15,6 +15,7 @@ import Projects from './components/Projects';
 import LoginUI from './projects/08otpLoginUI';
 import QuizApp from './projects/09-quiz-game';
 import MultiSelectSearch from './projects/10-multi-select-search';
+import FormValidation from './projects/11.form-validation-yup';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             path="projects/multiSelectSearch"
             element={<MultiSelectSearch />}
           />
+          <Route path="projects/formValidation" element={<FormValidation />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>

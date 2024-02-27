@@ -9,4 +9,5 @@ export const projects = [
   { name: 'Login with OTP', path: 'loginUI' },
   { name: 'quiz game', path: 'quiz' },
   { name: 'multiple select search', path: 'multiSelectSearch' },
+  { name: 'Form validation yup', path: 'formValidation' },
 ];

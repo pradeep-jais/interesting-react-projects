@@ -1,0 +1,25 @@
+.form-project {
+  padding: 1rem 0 3rem;
+}
+.form-project .title {
+  margin-bottom: 2rem;
+}
+.row-flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.row-flex > * {
+  margin: 0;
+  width: auto;
+}
+.row-flex .form-label {
+  font-size: 1rem;
+}
+.checkbox {
+  display: flex;
+}
+select {
+  text-transform: capitalize;
+}
