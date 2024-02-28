@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import FormError from './FormError';
 
 const FormWithCustomValidation = () => {
   const [formData, setFormData] = useState({
@@ -14,10 +15,101 @@ const FormWithCustomValidation = () => {
     dateOfBirth: '',
   });
 
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    const newError = {};
+
+    if (!formData.firstName || !formData.lastName) {
+      newError.fullName = 'Full Name is required';
+    }
+
+    if (!formData.email) {
+      newError.email = 'Email is required';
+    } else if (!isValidEmail(formData.email)) {
+      newError.email = 'Enter valid email';
+    }
+
+    if (!formData.phoneNumber) {
+      newError.phoneNumber = 'Phone number is required';
+    } else if (!isValidPhoneNumber(formData.phoneNumber)) {
+      newError.phoneNumber = 'Phone number is not valid';
+    }
+
+    if (!formData.password) {
+      newError.password = 'Password is required';
+    } else if (!isValidPassword(formData.password)) {
+      newError.password =
+        'Password must be at least 8 characters long and contain at least one symbol, one uppercase and one number';
+    }
+
+    if (!formData.confirmPassword) {
+      newError.confirmPassword = 'confirm password is required';
+    } else if (formData.password !== formData.confirmPassword) {
+      newError.confirmPassword = 'password must match';
+    }
+
+    if (!formData.age) {
+      newError.age = 'age is required';
+    } else if (!isValidAge(formData.age)) {
+      newError.age = 'Age should be between 18 and 100';
+    }
+
+    if (!formData.gender) {
+      newError.gender = 'gender is required';
+    }
+
+    if (formData.interests.length === 0) {
+      newError.interests = 'choose at least one interest';
+    }
+
+    if (!formData.dateOfBirth) {
+      newError.dateOfBirth = 'date of birth is required';
+    }
+
+    setFormErrors(newError);
+  };
+
+  function isValidEmail(email) {
+    // Regular expression for basic email validation
+    const emailRegex = /^[^s@]+@[^s@]+.[^s@]+$/;
+
+    return emailRegex.test(email);
+  }
+
+  function isValidPhoneNumber(number) {
+    return number.length === 10 && !isNaN(number);
+  }
+
+  function isValidPassword(password) {
+    const symbolRegex = /[!@#$%^&*]/;
+    const numberRegex = /[0-9]/;
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
+
+    return (
+      password.length >= 8 &&
+      symbolRegex.test(password) &&
+      numberRegex.test(password) &&
+      uppercaseRegex.test(password) &&
+      lowercaseRegex.test(password)
+    );
+  }
+
+  function isValidAge(age) {
+    return parseInt(age) >= 18 && parseInt(age) <= 100;
+  }
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    console.log('form submitted successfully', formData);
+    const validated = validateForm();
+
+    if (validated) {
+      console.log('Form submitted successfully', formData);
+    } else {
+      console.log('Form validation failed!');
+    }
   };
 
   const handleChange = (e) => {
@@ -62,6 +154,7 @@ const FormWithCustomValidation = () => {
           onChange={handleChange}
         />
       </div>
+      {formErrors.fullName && <FormError>{formErrors.fullName}</FormError>}
       <div className="form-row">
         <label htmlFor="email" className="form-label">
           enter email
@@ -74,6 +167,7 @@ const FormWithCustomValidation = () => {
           value={formData.email}
           onChange={handleChange}
         />
+        {formErrors.email && <FormError>{formErrors.email}</FormError>}
       </div>
       <div className="form-row">
         <label htmlFor="phoneNumber" className="form-label">
@@ -87,6 +181,9 @@ const FormWithCustomValidation = () => {
           value={formData.phoneNumber}
           onChange={handleChange}
         />
+        {formErrors.phoneNumber && (
+          <FormError>{formErrors.phoneNumber}</FormError>
+        )}
       </div>
       <div className="form-row">
         <label htmlFor="password" className="form-label">
@@ -100,6 +197,7 @@ const FormWithCustomValidation = () => {
           value={formData.password}
           onChange={handleChange}
         />
+        {formErrors.password && <FormError>{formErrors.password}</FormError>}
       </div>
       <div className="form-row">
         <label htmlFor="confirmPassword" className="form-label">
@@ -113,6 +211,9 @@ const FormWithCustomValidation = () => {
           value={formData.confirmPassword}
           onChange={handleChange}
         />
+        {formErrors.confirmPassword && (
+          <FormError>{formErrors.confirmPassword}</FormError>
+        )}
       </div>
       <div className="form-row">
         <label htmlFor="age" className="form-label">
@@ -126,6 +227,7 @@ const FormWithCustomValidation = () => {
           value={formData.age}
           onChange={handleChange}
         />
+        {formErrors.age && <FormError>{formErrors.age}</FormError>}
       </div>
       <div className="form-row">
         <label htmlFor="gender" className="form-label">
@@ -145,6 +247,7 @@ const FormWithCustomValidation = () => {
           <option value="female">female</option>
           <option value="transgender">transgender</option>
         </select>
+        {formErrors.gender && <FormError>{formErrors.gender}</FormError>}
       </div>
       <div className="form-row row-flex">
         <label htmlFor="interests" className="form-label">
@@ -183,6 +286,7 @@ const FormWithCustomValidation = () => {
           />
           <label htmlFor="music">music</label>
         </div>
+        {formErrors.interests && <FormError>{formErrors.interests}</FormError>}
       </div>
       <div className="form-row row-flex">
         <label htmlFor="dateOfBirth" className="form-label">
@@ -196,6 +300,9 @@ const FormWithCustomValidation = () => {
           onChange={handleChange}
         />
       </div>
+      {formErrors.dateOfBirth && (
+        <FormError>{formErrors.dateOfBirth}</FormError>
+      )}
       <button
         type="submit"
         className="btn btn-hipster"
