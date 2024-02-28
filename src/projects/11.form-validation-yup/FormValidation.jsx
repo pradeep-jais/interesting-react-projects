@@ -1,4 +1,5 @@
-import FormWithCustomValidation from './components/FormWithCustomValidation';
+// import FormWithCustomValidation from './components/FormWithCustomValidation';
+import FormValidationWithYup from './components/FormValidationWithYup';
 import './styles.css';
 
 const FormValidation = () => {
@@ -10,7 +11,8 @@ const FormValidation = () => {
           <div className="underline"></div>
         </div>
 
-        <FormWithCustomValidation />
+        {/* <FormWithCustomValidation /> */}
+        <FormValidationWithYup />
       </div>
     </section>
   );
