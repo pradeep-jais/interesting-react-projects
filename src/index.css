@@ -1,3 +1,7 @@
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /*
 ##############
  Global CSS
