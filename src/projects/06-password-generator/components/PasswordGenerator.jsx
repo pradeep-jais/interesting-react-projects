@@ -35,7 +35,7 @@ const PasswordGenerator = () => {
   };
 
   return (
-    <section className="pwg-app section">
+    <section className="pwd-app section">
       <div className="section-center">
         {/* project title */}
         <div className="title pwd-app-title">

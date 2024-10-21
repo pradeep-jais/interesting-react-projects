@@ -1,7 +1,7 @@
 .pwd-app-title {
   margin-bottom: 3rem;
 }
-.container {
+.pwd-app .container {
   max-width: 35rem;
   margin: 0 auto;
   background: #000014;
