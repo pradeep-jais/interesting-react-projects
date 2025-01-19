@@ -11,4 +11,5 @@ export const projects = [
   { name: 'multiple select search', path: 'multiSelectSearch' },
   { name: 'Form validation yup', path: 'formValidation' },
   { name: 'Memory game', path: 'memoryGame' },
+  { name: 'AI chatbot', path: 'chatbot' },
 ];

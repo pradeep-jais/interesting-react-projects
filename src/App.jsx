@@ -17,6 +17,7 @@ import QuizApp from './projects/09-quiz-game';
 import MultiSelectSearch from './projects/10-multi-select-search';
 import FormValidation from './projects/11.form-validation-yup';
 import MemoryGame from './projects/12-memory-game';
+import ChatBot from './projects/13-AI_chatbot';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           />
           <Route path="projects/formValidation" element={<FormValidation />} />
           <Route path="projects/memoryGame" element={<MemoryGame />} />
+          <Route path="projects/chatbot" element={<ChatBot />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>
