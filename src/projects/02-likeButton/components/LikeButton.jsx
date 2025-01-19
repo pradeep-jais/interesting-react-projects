@@ -1,7 +1,7 @@
+import Button from './Button';
 import '../styles.css';
 import { useEffect, useState } from 'react';
 import HeartIcon from '../asset/HeartIcon';
-import Loading from '../asset/Loading';
 
 // API url
 const url = 'https://www.greatfrontend.com/api/questions/like-button';
@@ -42,19 +42,17 @@ const LikeButton = () => {
 
   return (
     <section className="section-center like-button-project">
-      <button
-        disabled={isFetching}
-        className={`likeBtn ${liked ? 'liked' : ''}`}
-        onClick={handleLikeUnlike}
-      >
-        {isFetching ? (
-          <Loading size="1.5rem" color="red" />
-        ) : (
-          <i className="fa-regular fa-heart"></i>
-        )}
-
-        {liked ? 'liked' : 'like'}
-      </button>
+      <Button
+        isFetching={isFetching}
+        liked={liked}
+        handleLikeUnlike={handleLikeUnlike}
+      />
+      <Button
+        btnStyle={'animatedBtn'}
+        isFetching={isFetching}
+        liked={liked}
+        handleLikeUnlike={handleLikeUnlike}
+      />
       {error && <p className="error">{error}</p>}
     </section>
   );

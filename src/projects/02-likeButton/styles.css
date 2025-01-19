@@ -17,9 +17,11 @@
   letter-spacing: 1px;
   color: grey;
   background: white;
-  border: 2px solid grey;
-  transition: 0.1s linear all;
+  border: 2px solid transparent;
+  transition: 0.3s linear all;
   cursor: pointer;
+  position: relative;
+  margin-right: 1rem;
 }
 
 .likeBtn:hover {
@@ -36,4 +38,54 @@
   margin-top: 1rem;
   max-width: 100%;
   background: var(--red-light);
+}
+
+/* Beautiful button animation */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.animatedBtn::after,
+.animatedBtn::before {
+  --angle: 0deg;
+  content: '';
+  width: 8.5rem;
+  height: 40px;
+  position: absolute;
+  /* background: conic-gradient(from var(--angle), transparent 70%, red); */
+  background: conic-gradient(
+    from var(--angle),
+    red,
+    blue,
+    palegreen,
+    magenta,
+    red
+  );
+  border-radius: 2rem;
+  box-sizing: content-box;
+  padding: 4px 6px;
+  z-index: -1;
+  animation: spin 3s linear infinite;
+}
+.animatedBtn::before {
+  filter: blur(20px);
+  opacity: 0.6;
+}
+.animatedBtn,
+.animatedBtn:hover {
+  color: red;
+  background: #fff;
+  border: none;
+}
+.animatedBtn {
+  background: #fff;
+}
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
 }
