@@ -39,10 +39,16 @@ nav {
   justify-self: center;
 }
 .author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   right: 0.4rem;
-  top: 3.2rem;
+  bottom: 0rem;
   /* letter-spacing: 1px; */
+}
+.author span {
+  text-shadow: 2px 2px 3px #ff0099cc, 3px 3px 8px #00aaff, 4px 4px 12px #00ffcc;
 }
 @media screen and (min-width: 568px) {
   .navbar {
