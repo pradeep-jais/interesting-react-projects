@@ -13,4 +13,5 @@ export const projects = [
   { name: 'Memory game', path: 'memoryGame' },
   { name: 'AI chatbot', path: 'chatbot' },
   { name: 'snake game', path: 'snakeGame' },
+  { name: 'tic tack toe', path: 'ticTackToe' },
 ];

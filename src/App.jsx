@@ -19,6 +19,7 @@ import FormValidation from './projects/11.form-validation-yup';
 import MemoryGame from './projects/12-memory-game';
 import ChatBot from './projects/13-AI_chatbot';
 import SnakeGame from './projects/14-snake-game';
+import TicTackToe from './projects/15-tic-tack-toe';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="projects/memoryGame" element={<MemoryGame />} />
           <Route path="projects/chatbot" element={<ChatBot />} />
           <Route path="projects/snakeGame" element={<SnakeGame />} />
+          <Route path="projects/ticTackToe" element={<TicTackToe />} />
           <Route path="*" element={<Error errorMessage="Url not found!" />} />
         </Routes>
       </main>
