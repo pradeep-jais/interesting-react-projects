@@ -1,6 +1,7 @@
 import './styles.css';
 import ResultBanner from './components/ResultBanner';
 import useTicTackToe from './hooks/useTicTackToe';
+import GameCell from './components/GameCell';
 
 const TicTackToe = () => {
   const { cells, nextMove, winner, gameOver, handleCellClick, resetGame } =
@@ -37,26 +38,14 @@ const TicTackToe = () => {
           <div className="game-board w-[15rem] grid gap-1 grid-cols-3 aspect-square mb-6">
             {cells.map((cell, i) => {
               return (
-                <button
+                <GameCell
                   key={i}
-                  className={`bg-slate-300 aspect-square rounded-md cursor-pointer hover:bg-slate-400 hover:text-blue-500 transition flex justify-center items-center text-3xl font-bold border-none ${
-                    cell.isFilled || winner ? 'disable-cell' : ''
-                  }`}
-                  disabled={cell.isFilled || winner}
-                  onClick={() => handleCellClick(i)}
-                  onMouseEnter={(e) => {
-                    if (!cell.isFilled) {
-                      e.target.innerText = nextMove;
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!cell.isFilled) {
-                      e.target.innerText = '';
-                    }
-                  }}
-                >
-                  {cell.value}
-                </button>
+                  cell={cell}
+                  index={i}
+                  winner={winner}
+                  handleCellClick={handleCellClick}
+                  nextMove={nextMove}
+                />
               );
             })}
           </div>
