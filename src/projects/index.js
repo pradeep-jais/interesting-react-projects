@@ -1,0 +1,15 @@
+export { default as Carousel } from "./01Carousel";
+export { default as LikeButton } from "./02-likeButton";
+export { default as Pagination } from "./03-pagination";
+export { default as ProgressBar } from "./04-progressBar";
+export { default as FolderStructure } from "./05-folder-structure";
+export { default as PasswordGenerator } from "./06-password-generator";
+export { default as GridLights } from "./07-grid-lights";
+export { default as OtpLoginUI } from "./08otpLoginUI";
+export { default as QuizGame } from "./09-quiz-game";
+export { default as MultiSelectSearch } from "./10-multi-select-search";
+export { default as FormValidationYup } from "./11.form-validation-yup";
+export { default as MemoryGame } from "./12-memory-game";
+export { default as AiChatbot } from "./13-AI_chatbot";
+export { default as SnakeGame } from "./14-snake-game";
+export { default as TicTackToe } from "./15-tic-tack-toe";
