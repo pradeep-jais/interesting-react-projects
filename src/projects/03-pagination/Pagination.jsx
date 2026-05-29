@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import Products from './Products';
-import Error from '../../components/Error';
-import './styles.css';
+import { useEffect, useState } from "react";
+import Products from "./Products";
+import Error from "../../pages/Error";
+import "./styles.css";
 
 // Dummy product api
-const url = 'https://dummyjson.com/products?limit=100';
+const url = "https://dummyjson.com/products?limit=100";
 
 const Pagination = () => {
   const [products, setProducts] = useState([]);
@@ -56,7 +56,7 @@ const Pagination = () => {
                   onClick={() => {
                     handlePageUpdate(page - 1);
                   }}
-                  className={page === 1 ? 'hide-btn' : ''}
+                  className={page === 1 ? "hide-btn" : ""}
                 >
                   ◀
                 </button>
@@ -64,7 +64,7 @@ const Pagination = () => {
                   return (
                     <button
                       key={i}
-                      className={page === i + 1 ? 'active-page' : ''}
+                      className={page === i + 1 ? "active-page" : ""}
                       onClick={() => {
                         handlePageUpdate(i + 1);
                       }}
@@ -77,7 +77,7 @@ const Pagination = () => {
                   onClick={() => {
                     handlePageUpdate(page + 1);
                   }}
-                  className={page === totalPages ? 'hide-btn' : ''}
+                  className={page === totalPages ? "hide-btn" : ""}
                 >
                   ▶
                 </button>

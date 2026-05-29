@@ -1,6 +1,6 @@
-import './styles.css';
-import { projects } from '../../data/projects';
-import { Link } from 'react-router-dom';
+import "./styles.css";
+import { projectsConfig } from "../../data/projectsConfig";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
           more projects<i className="fa-regular fa-lightbulb"></i>
         </h5>
         <ul className="footer-projects-list">
-          {projects.map((project, index) => {
+          {projectsConfig.map((project, index) => {
             return (
               <li key={index}>
                 <Link

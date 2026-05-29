@@ -1,6 +1,6 @@
-import './styles.css';
-import { projects } from '../../data/projects';
-import { Link } from 'react-router-dom';
+import "./styles.css";
+import { projectsConfig } from "../../data/projectsConfig";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   return (
@@ -10,7 +10,7 @@ const Projects = () => {
           Explore all projects <i className="fa-regular fa-lightbulb"></i>
         </h3>
         <ul className="projects-list">
-          {projects.map((project, index) => {
+          {projectsConfig.map((project, index) => {
             return (
               <li key={index}>
                 <Link className="project-link" to={project.path}>

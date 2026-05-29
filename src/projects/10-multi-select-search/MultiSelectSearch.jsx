@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import './styles.css';
-import axios from 'axios';
-import ErrorPage from '../../components/Error';
-import Pills from './Pills';
+import { useEffect, useRef, useState } from "react";
+import "./styles.css";
+import axios from "axios";
+import ErrorPage from "../../pages/Error";
+import Pills from "./Pills";
 
-const USER_API = 'https://dummyjson.com/users/search?q=';
+const USER_API = "https://dummyjson.com/users/search?q=";
 
 const MultiSelectSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +51,7 @@ const MultiSelectSearch = () => {
       }
     }
     setSelectedUsers(newUser);
-    setSearchTerm('');
+    setSearchTerm("");
 
     // Cursor focused on input after new user selected
     inputRef.current.focus();
@@ -65,23 +65,23 @@ const MultiSelectSearch = () => {
 
   const handleKeyDown = (e) => {
     // Navigate to suggested users suggestion tab on ArrorDown
-    if (e.key === 'ArrowDown' && highlightedIndex < users.length - 1) {
+    if (e.key === "ArrowDown" && highlightedIndex < users.length - 1) {
       e.preventDefault();
       setHighlightedIndex(highlightedIndex + 1);
       scrollToHighlightedUser();
-    } else if (e.key === 'ArrowUp' && highlightedIndex > 0) {
+    } else if (e.key === "ArrowUp" && highlightedIndex > 0) {
       e.preventDefault();
       setHighlightedIndex(highlightedIndex - 1);
       scrollToHighlightedUser();
     } else if (
-      e.key === 'Enter' &&
+      e.key === "Enter" &&
       highlightedIndex >= 0 &&
       highlightedIndex < users.length
     ) {
       selectUser(users[highlightedIndex]);
     }
 
-    if (e.key === 'Backspace' && selectedUsers.length > 0 && !searchTerm) {
+    if (e.key === "Backspace" && selectedUsers.length > 0 && !searchTerm) {
       const newSelectedUsers = [...selectedUsers];
       newSelectedUsers.pop();
       setSelectedUsers(newSelectedUsers);
@@ -91,8 +91,8 @@ const MultiSelectSearch = () => {
   const scrollToHighlightedUser = () => {
     if (usersRef.current && usersRef.current.children[highlightedIndex]) {
       usersRef.current.children[highlightedIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
+        behavior: "smooth",
+        block: "center",
       });
     }
   };
@@ -129,7 +129,7 @@ const MultiSelectSearch = () => {
           />
         </div>
         {isLoading ? (
-          <div className="loading" style={{ marginTop: '3rem' }}></div>
+          <div className="loading" style={{ marginTop: "3rem" }}></div>
         ) : (
           <>
             {users.length > 0 && (
@@ -140,7 +140,7 @@ const MultiSelectSearch = () => {
                     <li
                       key={email}
                       className={`user-name ${
-                        index === highlightedIndex ? 'highlight-user' : ''
+                        index === highlightedIndex ? "highlight-user" : ""
                       }`}
                       onClick={() => {
                         selectUser(user);

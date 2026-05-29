@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ErrorAlert from '../component/ErrorAlert';
-import ErrorPage from '../../../components/Error';
+import ErrorPage from '../../../pages/Error';
 import Options from '../component/Options';
 import shuffleArr from '../utils/shuffleArr';
 import useFetchData from '../hooks/useFetchData';
@@ -12,7 +12,7 @@ const QUIZ_API =
 const QuizPlay = () => {
   const { state: quizSettings } = useLocation();
   const { questions, isLoading, error } = useFetchData(
-    `${QUIZ_API}${quizSettings.value}&difficulty=${quizSettings.difficulty}`
+    `${QUIZ_API}${quizSettings.value}&difficulty=${quizSettings.difficulty}`,
   );
   const [question, setQuestion] = useState({
     count: 0,
@@ -73,7 +73,7 @@ const QuizPlay = () => {
   };
 
   if (isLoading) {
-    return <div className="loading"></div>;
+    return <div className='loading'></div>;
   }
 
   if (error) {
@@ -81,15 +81,15 @@ const QuizPlay = () => {
   }
 
   return (
-    <div className="quiz-play">
-      <h5 className="user">welcome! :) {quizSettings.name}</h5>
-      <div className="quiz-score">
+    <div className='quiz-play'>
+      <h5 className='user'>welcome! :) {quizSettings.name}</h5>
+      <div className='quiz-score'>
         <span>{quizSettings.subject}</span>
         <span>score: {question.score}</span>
       </div>
-      <h6 className="question-no">question: {question.count + 1}</h6>
-      <div className="question-container">
-        <p className="question">{question.statement}</p>
+      <h6 className='question-no'>question: {question.count + 1}</h6>
+      <div className='question-container'>
+        <p className='question'>{question.statement}</p>
         {alert && <ErrorAlert>please select an option first!</ErrorAlert>}
         <Options
           question={question}
@@ -97,11 +97,11 @@ const QuizPlay = () => {
           setAlert={setAlert}
         />
 
-        <div className="btns">
-          <button className="btn btn-quit" onClick={handleQuit}>
+        <div className='btns'>
+          <button className='btn btn-quit' onClick={handleQuit}>
             quit
           </button>
-          <button className="btn btn-next" onClick={handleNextQuestion}>
+          <button className='btn btn-next' onClick={handleNextQuestion}>
             {question.count >= 9 ? 'finish quiz' : 'next question'}
           </button>
         </div>
