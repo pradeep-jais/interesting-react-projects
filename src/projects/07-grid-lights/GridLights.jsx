@@ -47,36 +47,30 @@ const GridLights = () => {
   };
 
   return (
-    <section className="section grid-light">
-      <div className="section-center">
-        <div className="title">
-          <h3>grid lights</h3>
-          <div className="underline"></div>
-        </div>
-        <div
-          className="grid-container"
-          style={{
-            gridTemplateColumns: `repeat(${cellStructure[0].length},1fr)`,
-          }}
-        >
-          {cellStructure.flat().map((cell, index) => {
-            return cell ? (
-              <Cell
-                key={index}
-                filled={order.includes(index)}
-                onClick={() => {
-                  activateCell(index);
-                }}
-                isDisabled={isDeactivating}
-                label={`cell ${index + 1}`}
-              />
-            ) : (
-              <div key={index}></div>
-            );
-          })}
-        </div>
+    <div className='grid-light'>
+      <div
+        className='grid-container'
+        style={{
+          gridTemplateColumns: `repeat(${cellStructure[0].length},1fr)`,
+        }}
+      >
+        {cellStructure.flat().map((cell, index) => {
+          return cell ? (
+            <Cell
+              key={index}
+              filled={order.includes(index)}
+              onClick={() => {
+                activateCell(index);
+              }}
+              isDisabled={isDeactivating}
+              label={`cell ${index + 1}`}
+            />
+          ) : (
+            <div key={index}></div>
+          );
+        })}
       </div>
-    </section>
+    </div>
   );
 };
 export default GridLights;

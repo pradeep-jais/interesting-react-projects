@@ -84,7 +84,7 @@ export const projectsConfig = [
   {
     id: "quiz",
     name: "quiz game",
-    path: "quiz",
+    path: "quiz/*",
     description: "Multi-step quiz with scoring",
     tags: ["Game", "Logic"],
     component: QuizGame,

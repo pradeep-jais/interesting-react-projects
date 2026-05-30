@@ -102,66 +102,64 @@ const MultiSelectSearch = () => {
   }
 
   return (
-    <section className="multi-select-search">
-      <div className="section-center">
-        <div className="search-input">
-          {selectedUsers.map((user) => {
-            const { firstName, lastName, email, image } = user;
-            return (
-              <Pills
-                key={email}
-                fullName={`${firstName} ${lastName}`}
-                image={image}
-                onClick={() => {
-                  removeUser(user);
-                }}
-              />
-            );
-          })}
+    <div className='multi-select-search'>
+      <div className='search-input'>
+        {selectedUsers.map((user) => {
+          const { firstName, lastName, email, image } = user;
+          return (
+            <Pills
+              key={email}
+              fullName={`${firstName} ${lastName}`}
+              image={image}
+              onClick={() => {
+                removeUser(user);
+              }}
+            />
+          );
+        })}
 
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={(e) => handleKeyDown(e)}
-            ref={inputRef}
-            placeholder="search for a user..."
-          />
-        </div>
-        {isLoading ? (
-          <div className="loading" style={{ marginTop: "3rem" }}></div>
-        ) : (
-          <>
-            {users.length > 0 && (
-              <ul className="search-suggestion" ref={usersRef}>
-                {users.map((user, index) => {
-                  const { firstName, lastName, email, image } = user;
-                  return (
-                    <li
-                      key={email}
-                      className={`user-name ${
-                        index === highlightedIndex ? "highlight-user" : ""
-                      }`}
-                      onClick={() => {
-                        selectUser(user);
-                      }}
-                    >
-                      <img src={image} alt={firstName} />
-                      <span>
-                        {firstName} {lastName}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-            {users.length < 1 && searchTerm && (
-              <p className="user-alert">No user matched for your search</p>
-            )}
-          </>
-        )}
+        <input
+          type='text'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={(e) => handleKeyDown(e)}
+          ref={inputRef}
+          placeholder='search for a user...'
+        />
       </div>
-    </section>
+      {isLoading ? (
+        <div className='loading' style={{ marginTop: "3rem" }}></div>
+      ) : (
+        <>
+          {users.length > 0 && (
+            <ul className='search-suggestion' ref={usersRef}>
+              {users.map((user, index) => {
+                const { firstName, lastName, email, image } = user;
+                return (
+                  <li
+                    key={email}
+                    className={`user-name ${
+                      index === highlightedIndex ? "highlight-user" : ""
+                    }`}
+                    onClick={() => {
+                      selectUser(user);
+                    }}
+                  >
+                    <img src={image} alt={firstName} />
+                    <span>
+                      {firstName} {lastName}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          {users.length < 1 && searchTerm && (
+            <p className='user-alert'>No user matched for your search</p>
+          )}
+        </>
+      )}
+    </div>
   );
 };
 export default MultiSelectSearch;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 const MemoryGame = () => {
   const [gridSize, setGridSize] = useState(4);
   const [gameCell, setGameCell] = useState([]);
@@ -75,63 +75,57 @@ const MemoryGame = () => {
   };
 
   return (
-    <section className="section-center mt-4 mb-8">
-      <div className="text-center">
-        <h2>Memory game</h2>
-        <div className="underline"></div>
+    <div className='flex flex-col gap-8 items-center'>
+      <div className='flex gap-2'>
+        <label htmlFor='size' className='capitalize'>
+          grid size:
+        </label>
+        <input
+          name='size'
+          type='number'
+          value={gridSize}
+          onChange={(ev) => handleSizeChange(ev)}
+          className='text-slate-900 w-[4rem] px-1'
+        />
       </div>
-      <div className="flex flex-col gap-8 items-center mt-4  ">
-        <div className="flex gap-2">
-          <label htmlFor="size" className="capitalize">
-            grid size:
-          </label>
-          <input
-            name="size"
-            type="number"
-            value={gridSize}
-            onChange={(ev) => handleSizeChange(ev)}
-            className="text-slate-900 w-[4rem] px-1"
-          />
-        </div>
-        <article
-          className={`game-board grid gap-1`}
-          style={{
-            gridTemplateColumns: `repeat(${gridSize},1fr)`,
-            width: '100%',
-            maxWidth: `${gridSize * 5}rem`,
-          }}
-        >
-          {gameCell.map((value, i) => {
-            return (
-              <div
-                key={i}
-                className={`${
-                  isMatched(i)
-                    ? 'bg-green-500 text-white'
-                    : isFlipped(i)
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-slate-200 text-slate-300'
-                } aspect-square flex justify-center items-center text-lg font-bold rounded-lg cursor-pointer transition-all duration-300`}
-                onClick={() => handleCardClick(i)}
-              >
-                {isFlipped(i) || isMatched(i) ? value : ''}
-              </div>
-            );
-          })}
-        </article>
-        {won && (
-          <span className="text-green-500 font-bold text-3xl mb-[-1rem]  capitalize animate-bounce">
-            you won!
-          </span>
-        )}
-        <button
-          className="btn bg-green-500 font-bold text-sm  hover:bg-green-600"
-          onClick={initializeGame}
-        >
-          {won ? 'play again' : 'reset game'}
-        </button>
-      </div>
-    </section>
+      <article
+        className={`game-board grid gap-1`}
+        style={{
+          gridTemplateColumns: `repeat(${gridSize},1fr)`,
+          width: "100%",
+          maxWidth: `${gridSize * 5}rem`,
+        }}
+      >
+        {gameCell.map((value, i) => {
+          return (
+            <div
+              key={i}
+              className={`${
+                isMatched(i)
+                  ? "bg-green-500 text-white"
+                  : isFlipped(i)
+                    ? "bg-blue-500 text-white"
+                    : "bg-slate-200 text-slate-300"
+              } aspect-square flex justify-center items-center text-lg font-bold rounded-lg cursor-pointer transition-all duration-300`}
+              onClick={() => handleCardClick(i)}
+            >
+              {isFlipped(i) || isMatched(i) ? value : ""}
+            </div>
+          );
+        })}
+      </article>
+      {won && (
+        <span className='text-green-500 font-bold text-3xl mb-[-1rem]  capitalize animate-bounce'>
+          you won!
+        </span>
+      )}
+      <button
+        className='btn bg-green-500 font-bold text-sm  hover:bg-green-600'
+        onClick={initializeGame}
+      >
+        {won ? "play again" : "reset game"}
+      </button>
+    </div>
   );
 };
 export default MemoryGame;

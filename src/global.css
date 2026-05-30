@@ -6,7 +6,7 @@
 /*
  Fonts 
  */
-@import url('https://fonts.googleapis.com/css?family=Spectral:400');
+@import url("https://fonts.googleapis.com/css?family=Spectral:400");
 *,
 ::after,
 ::before {
@@ -49,8 +49,8 @@ html {
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
   /* fonts  */
-  --heading-font: 'Spectral', serif;
-  --body-font: 'Karla', sans-serif;
+  --heading-font: "Spectral", serif;
+  --body-font: "Karla", sans-serif;
   --small-text: 0.7em;
   /* rest of the vars  */
   --background-color: var(--gray-50);
@@ -65,13 +65,14 @@ html {
   /* from tailwind  */
   --shadow-1: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.05);
   --shadow-2: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-3: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-4: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --shadow-3:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-4:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
 }
 body {
   background: var(--white);
-  font-family: 'Spectral', serif;
+  font-family: "Spectral", serif;
   font-weight: 400;
   line-height: 1.75;
   color: var(--gray-900);
@@ -243,11 +244,11 @@ alerts
   margin-bottom: 5rem;
 }
 .underline {
-  width: 50%;
+  width: 10rem;
   height: 3px;
   background: var(--primary-500);
   margin: 0 auto;
-  margin-top: -1.5rem;
+  margin-top: -1.25rem;
 }
 .section {
   padding: 3rem 0;

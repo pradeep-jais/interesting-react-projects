@@ -11,11 +11,6 @@ const LikeButton = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
 
-  // const handleLiked = () => {
-  //   setLiked(!liked);
-  //   // console.log(liked);
-  // };
-
   const handleLikeUnlike = async () => {
     setIsFetching(true);
     setError(null);
@@ -41,7 +36,7 @@ const LikeButton = () => {
   };
 
   return (
-    <section className="section-center like-button-project">
+    <div className='like-button-project'>
       <Button
         isFetching={isFetching}
         liked={liked}
@@ -53,11 +48,8 @@ const LikeButton = () => {
         liked={liked}
         handleLikeUnlike={handleLikeUnlike}
       />
-      {error && <p className="error">{error}</p>}
-    </section>
+      {error && <p className='error'>{error}</p>}
+    </div>
   );
 };
 export default LikeButton;
-{
-  /* <Loading size="1.8rem" color="red" />; */
-}

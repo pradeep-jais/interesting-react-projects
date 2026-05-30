@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Slider from './Slider';
+import Section from '../../../components/ui/Section';
 
 import imageURLs from '../assets/images';
 
@@ -29,15 +30,9 @@ const Carousel = () => {
   }, []);
 
   return (
-    <main className="carousel">
-      <div className="title">
-        <h3>Carousel : Image Slider</h3>
-        <div className="underline"></div>
-      </div>
-      <div className="section-center carousel-center">
-        {images ? <Slider images={images} /> : <div className="loading"></div>}
-      </div>
-    </main>
+    <div>
+      {images ? <Slider images={images} /> : <div className='loading'></div>}
+    </div>
   );
 };
 export default Carousel;

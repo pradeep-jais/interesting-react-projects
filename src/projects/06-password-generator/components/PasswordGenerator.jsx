@@ -35,79 +35,68 @@ const PasswordGenerator = () => {
   };
 
   return (
-    <section className="pwd-app section">
-      <div className="section-center">
-        {/* project title */}
-        <div className="title pwd-app-title">
-          <h3>Password generator</h3>
-          <div className="underline"></div>
-        </div>
-
-        <div className="container">
-          {/* password */}
-          {password && (
-            <header className="password">
-              <p className="pwd">{password}</p>
-              <Button
-                text={copied ? 'copied' : 'copy'}
-                onClick={handleCopy}
-                customClass={'btn copyBtn'}
-              />
-            </header>
-          )}
-
-          {/* password length */}
-          <div className="length">
-            <span>
-              <label>character length:</label>
-              <label>{passwordLength}</label>
-            </span>
-            <input
-              type="range"
-              min={4}
-              max={20}
-              value={passwordLength}
-              onChange={handleLength}
+    <div className='pwd-app'>
+      <div className='container'>
+        {/* password */}
+        {password && (
+          <header className='password'>
+            <p className='pwd'>{password}</p>
+            <Button
+              text={copied ? 'copied' : 'copy'}
+              onClick={handleCopy}
+              customClass={'btn copyBtn'}
             />
-          </div>
-          {/* checkboxes */}
-          <div className="checkboxes">
-            {checkboxData.map((checkbox, index) => {
-              return (
-                <Checkbox
-                  key={index}
-                  state={checkbox.state}
-                  onChange={() => {
-                    handleCheckboxData(index);
-                  }}
-                  title={checkbox.title}
-                />
-              );
-            })}
-          </div>
-          {/* strength or error*/}
-          {error ? (
-            <p className="error-msg">Select at least one checkbox</p>
-          ) : (
-            password && (
-              <StrengthChecker
-                password={password}
-                checkboxData={checkboxData}
-              />
-            )
-          )}
+          </header>
+        )}
 
-          {/* generate button */}
-          <Button
-            text={'generate password'}
-            onClick={() => {
-              generatePassword(passwordLength, checkboxData);
-            }}
-            customClass={'btn generateBtn'}
+        {/* password length */}
+        <div className='length'>
+          <span>
+            <label>character length:</label>
+            <label>{passwordLength}</label>
+          </span>
+          <input
+            type='range'
+            min={4}
+            max={20}
+            value={passwordLength}
+            onChange={handleLength}
           />
         </div>
+        {/* checkboxes */}
+        <div className='checkboxes'>
+          {checkboxData.map((checkbox, index) => {
+            return (
+              <Checkbox
+                key={index}
+                state={checkbox.state}
+                onChange={() => {
+                  handleCheckboxData(index);
+                }}
+                title={checkbox.title}
+              />
+            );
+          })}
+        </div>
+        {/* strength or error*/}
+        {error ? (
+          <p className='error-msg'>Select at least one checkbox</p>
+        ) : (
+          password && (
+            <StrengthChecker password={password} checkboxData={checkboxData} />
+          )
+        )}
+
+        {/* generate button */}
+        <Button
+          text={'generate password'}
+          onClick={() => {
+            generatePassword(passwordLength, checkboxData);
+          }}
+          customClass={'btn generateBtn'}
+        />
       </div>
-    </section>
+    </div>
   );
 };
 export default PasswordGenerator;
