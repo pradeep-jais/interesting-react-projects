@@ -1,15 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
-import { projectsConfig } from '../data/projectsConfig';
-import Home from '../pages/Home';
-import Projects from '../components/Projects';
-import Error from '../pages/Error';
-import Section from '../components/ui/Section';
+import { Routes, Route } from "react-router-dom";
+import { projectsConfig } from "../data/projectsConfig";
+import { Home, Projects, Error } from "../pages";
+import Section from "../components/ui/Section";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/projects' element={<Projects />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/projects" element={<Projects />} />
       {projectsConfig.map((data) => {
         const { id, path, name, component: Component } = data;
 
@@ -25,7 +23,7 @@ const AppRoutes = () => {
           />
         );
       })}
-      <Route path='*' element={<Error />} />
+      <Route path="*" element={<Error />} />
     </Routes>
   );
 };
