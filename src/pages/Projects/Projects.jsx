@@ -40,22 +40,19 @@ const Projects = () => {
     project.tags.forEach((tag) => allTags.add(tag));
   });
   allTags = [...allTags];
-  console.log(allTags);
-
-  console.log(filters);
 
   return (
     <Section title={"Explore projects"} styles={"bg-slate-200 px-6"}>
       <div className="flex gap-4 items-center bg-slate-100 mb-4 rounded-md py-1 px-4">
-        <div className="max-w-full">
-          <ul className=" flex gap-2 p-2 overflow-hidden">
+        <div className="w-[65%] md:w-[75%] overflow-x-scroll no-scrollbar">
+          <ul className=" flex gap-2 p-2 ">
             {allTags.map((tag) => {
               return (
                 <li key={tag}>
                   <button
                     onClick={() => toggleTags(tag)}
-                    className={`bg-transparent border border-solid border-transparent py-1 px-2 capitalize rounded-md hover:bg-slate-50 hover:border-slate-500/30  cursor-pointer 
-                  ${filters.tags.includes(tag) ? "bg-slate-50 border-slate-500/30" : ""}
+                    className={`border border-solid py-1 px-2 capitalize rounded-md hover:bg-slate-50 hover:border-slate-500/30  cursor-pointer 
+                  ${filters.tags.includes(tag) ? "bg-blue-50 text-blue-900 border-blue-500/30" : "bg-transparent border-transparent"}
                   `}
                   >
                     {tag}
@@ -67,7 +64,7 @@ const Projects = () => {
         </div>
         <form
           onSubmit={handleSearch}
-          className="group flex items-center relative py-0.5 px-2 gap-2 border border-solid border-slate-700/30 rounded-3xl min-w-12 focus-within:outline focus-within:outline-2 
+          className="group flex-1 flex items-stretch relative px-2 gap-1 border border-solid border-slate-700/30 rounded-3xl focus-within:outline focus-within:outline-2 
              focus-within:outline-offset-1 focus-within:outline-indigo-500 focus-within:border-transparent"
         >
           <input
@@ -78,7 +75,7 @@ const Projects = () => {
               setFilters((prev) => ({ ...prev, search: e.target.value.trim() }))
             }
             placeholder="Search projects..."
-            className="py-0.5 px-2 flex-1 border-none bg-transparent focus:outline-none text-slate-900 placeholder:text-slate-500"
+            className="py-0.5 px-2 w-full bg-transparent flex-1 text-ellipsis border-none focus:outline-none text-slate-900 placeholder:text-slate-500"
           />
           <button
             type="submit"
