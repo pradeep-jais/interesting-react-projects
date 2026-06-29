@@ -73,8 +73,6 @@ html {
 body {
   background: var(--white);
   font-family: "Spectral", serif;
-  font-weight: 400;
-  line-height: 1.75;
   color: var(--gray-900);
 }
 
