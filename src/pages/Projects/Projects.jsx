@@ -1,45 +1,11 @@
 import Section from "../../components/ui/Section";
-import { projectsConfig } from "../../data/projectsConfig";
 import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import useProjectsFilter from "../../hooks/useProjectsFilter";
 
 const Projects = () => {
-  const [filters, setFilters] = useState({ tags: [], search: "" });
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log("Search Project, query:", filters.search);
-  };
-
-  const toggleTags = (tag) => {
-    setFilters((prev) => ({
-      ...prev,
-      tags: prev.tags.includes(tag)
-        ? prev.tags.filter((t) => t !== tag)
-        : [...prev.tags, tag],
-    }));
-  };
-
-  const filteredProjects = projectsConfig.filter((project) => {
-    const tagMatched =
-      filters.tags.length > 0
-        ? project.tags.some((t) => filters.tags.includes(t))
-        : projectsConfig;
-
-    const searchResultFound = project.name
-      .toLowerCase()
-      .includes(filters.search.toLowerCase());
-
-    return tagMatched && searchResultFound;
-  });
-
-  let allTags = new Set();
-
-  projectsConfig.forEach((project) => {
-    project.tags.forEach((tag) => allTags.add(tag));
-  });
-  allTags = [...allTags];
+  const { filters, toggleTags, setSearch, filteredProjects, allTags } =
+    useProjectsFilter();
 
   return (
     <Section title={"Explore projects"} styles={"bg-slate-200 px-6"}>
@@ -62,31 +28,23 @@ const Projects = () => {
             })}
           </ul>
         </div>
-        <form
-          onSubmit={handleSearch}
-          className="group flex-1 flex items-stretch relative px-2 gap-1 border border-solid border-slate-700/30 rounded-3xl focus-within:outline focus-within:outline-2 
+        <div
+          className="group flex-1 flex items-stretch relative py-1 px-2 gap-1 border border-solid border-slate-700/30 rounded-3xl focus-within:outline focus-within:outline-2 
              focus-within:outline-offset-1 focus-within:outline-indigo-500 focus-within:border-transparent"
         >
           <input
             type="text"
             name="search"
             value={filters.search}
-            onChange={(e) =>
-              setFilters((prev) => ({ ...prev, search: e.target.value.trim() }))
-            }
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Search projects..."
             className="py-0.5 px-2 w-full bg-transparent flex-1 text-ellipsis border-none focus:outline-none text-slate-900 placeholder:text-slate-500"
           />
-          <button
-            type="submit"
-            className="bg-inherit pt-1 cursor-pointer border-none"
-          >
-            <Search
-              className="text-slate-600 group-focus-within:text-indigo-500 "
-              size={20}
-            />
-          </button>
-        </form>
+          <Search
+            className="text-slate-600 group-focus-within:text-indigo-500 "
+            size={20}
+          />
+        </div>
       </div>
       <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filteredProjects.map((project) => {
